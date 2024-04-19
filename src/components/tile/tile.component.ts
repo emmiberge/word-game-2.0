@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatCardModule} from '@angular/material/card';
-import { ITile } from '../../app/types/ITile';
+import { Tile } from '../../app/types/Tile';
+import { GridComponent } from '../grid/grid.component';
 
 @Component({
   selector: 'app-tile',
@@ -12,12 +13,19 @@ import { ITile } from '../../app/types/ITile';
 })
 export class TileComponent {
   @Input()
-  content!: ITile;
+  content!: Tile;
   state : string = "unselected";
+  canBeSelected : boolean = true;
 
+  @Output() taskNameEvent = new EventEmitter<string>();
 
-  switchSelect(){
-    if(this.state === "unselected"){
+  trySelect() {
+      this.taskNameEvent.emit(this.content.getId());
+      this.updateState();
+  }
+
+  updateState(){
+    if(this.content.getIsSelected()){
       this.state = "selected";
     }
     else{
@@ -25,7 +33,9 @@ export class TileComponent {
     }
   }
 
+
+
   getWord(){
-    return this.content.word;
+    return this.content.getWord();
   }
 }
