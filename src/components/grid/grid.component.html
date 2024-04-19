@@ -1,0 +1,7 @@
+<div class="gridContainer">
+    <mat-grid-list cols="4" rowHeight="1:1">
+        <mat-grid-tile colspan="1" class="tileContainer" *ngFor="let item of content">
+              <app-tile [content] = item></app-tile>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

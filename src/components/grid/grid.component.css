@@ -1,0 +1,13 @@
+.tile{
+    background-color: aquamarine;
+}
+
+.tileContainer{
+    padding-left: 2px;
+    width: fit-content;
+}
+
+.gridContainer{
+    width: 350px;
+    margin-top: 5%;
+}
