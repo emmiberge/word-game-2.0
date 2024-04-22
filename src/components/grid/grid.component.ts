@@ -5,12 +5,12 @@ import {MatCardModule} from '@angular/material/card';
 import { TileComponent } from '../tile/tile.component';
 import { Tile } from '../../app/types/Tile';
 import { Group } from '../../app/types/group';
-import {MatButtonModule} from '@angular/material/button';
+
 
 @Component({
   selector: 'app-grid',
   standalone: true,
-  imports: [MatButtonModule, MatGridListModule, CommonModule, MatCardModule, TileComponent],
+  imports: [MatGridListModule, CommonModule, MatCardModule, TileComponent],
   templateUrl: './grid.component.html',
   styleUrl: './grid.component.css'
 })
