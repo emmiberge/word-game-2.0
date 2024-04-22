@@ -31,11 +31,20 @@ export class GridComponent {
     console.log("Can be selected:" + t.getCanBeSelected());
     console.log("nSelected:" + this.nSelected);
 
-    if(t.getCanBeSelected() && this.nSelected < 4){
+    if(t.getIsSelected()){
+      console.log("Unselected tile with id {0} ", t.getId());
+      t.deselect();
+      this.nSelected--;
+      console.log("nSelected:" + this.nSelected);
+      return;
+    }
+
+    else if(t.getCanBeSelected() && this.nSelected < 4){
       console.log("Select succeeded");
       this.nSelected++;
       console.log("nSelected:" + this.nSelected);
       t.select();
+      return;
     }
   }
 
