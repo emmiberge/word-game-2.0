@@ -10,7 +10,7 @@ export class Tile{
 
 
 
-    constructor(w: string, g:Group, i: string){
+    constructor(w: string, g: Group, i: string){
         this.word = w;
         this.group = g;
         this.id = i;
@@ -20,6 +20,9 @@ export class Tile{
     }
 
 
+    public getGroup(){
+        return this.group;
+    }
 
     public getCanBeSelected(){
         return this.canBeSelected;

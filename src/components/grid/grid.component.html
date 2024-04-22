@@ -1,7 +1,8 @@
 <div class="gridContainer">
     <mat-grid-list cols="4" rowHeight="1:1">
-        <mat-grid-tile colspan="1" class="tileContainer" *ngFor="let item of content">
+        <mat-grid-tile colspan="1" class="tileContainer" *ngFor="let item of tiles">
               <app-tile [content] = item (taskNameEvent)='trySelect($event)'></app-tile>
         </mat-grid-tile>
     </mat-grid-list>
+    <button (click)="submitTiles()" mat-raised-button>Basic</button>
 </div>
