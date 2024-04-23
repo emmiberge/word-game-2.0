@@ -3,12 +3,4 @@
     height: 75px;
     text-align: center;
     justify-content: space-around;
-
-    &.selected{
-        background-color: rgb(145, 143, 143);
-    }
-
-    &.unselected{
-        background-color: rgb(240, 237, 237);
-    }
 }

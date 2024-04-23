@@ -40,6 +40,11 @@ export class Tile{
         return this.isSelected;
     }
 
+    public getIsFound(){
+        console.log("Called getIsFound");
+        return this.isFound;
+    }
+
     public select(){
         console.log("Should select tile with id " + this.id);
         if(this.canBeSelected){
@@ -60,8 +65,11 @@ export class Tile{
 
     public find(){
         this.canBeSelected = false;
+        this.isSelected = false;
         this.isFound = true;
     }
+
+    
 
 
 }

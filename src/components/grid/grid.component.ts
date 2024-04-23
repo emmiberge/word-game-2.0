@@ -16,7 +16,7 @@ import { Group } from '../../app/types/group';
 })
 export class GridComponent {
   tiles : Tile[] = Array.from({length: 16}, (_, i) => {
-    let newTile : Tile = new Tile((i+1).toString(), i % 2 == 0 ? Group.BLUE : Group.GREEN, (i+1).toString());
+    let newTile : Tile = new Tile((i+1).toString(), i % 2 == 0 ? Group.BLUE : Group.YELLOW, (i+1).toString());
     return newTile;
   })
 
