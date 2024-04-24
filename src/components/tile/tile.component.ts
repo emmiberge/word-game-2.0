@@ -5,6 +5,7 @@ import { Tile } from '../../app/types/Tile';
 import { GridComponent } from '../grid/grid.component';
 import { tileState } from '../../app/types/tileState';
 import { GroupClass } from '../../app/types/group';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tile',
@@ -13,31 +14,28 @@ import { GroupClass } from '../../app/types/group';
   templateUrl: './tile.component.html',
   styleUrl: './tile.component.css'
 })
-export class TileComponent implements OnInit{
+export class TileComponent{
   @Input() content!: Tile;
-  color!: string;
 
   @Output() taskNameEvent = new EventEmitter<string>();
 
-  ngOnInit(){
-    this.setColor();
-  }
+
 
   trySelect() {
       this.taskNameEvent.emit(this.content.getId());
-      this.setColor();
+
   }
 
-  setColor() : void{
+  getColor() : string{
     console.log("Should set color");
     if(this.content.getIsFound()){
-      this.color = GroupClass.groupColorMap.get(this.content.getGroup())!;
+      return GroupClass.groupColorMap.get(this.content.getGroup())!;
     }
     else if(this.content.getIsSelected()){
-      this.color = 'orange';
+      return 'orange';
     }
     else{
-      this.color = 'green';
+      return 'green';
     }
   }
 
@@ -47,3 +45,14 @@ export class TileComponent implements OnInit{
     return this.content.getWord();
   }
 }
+
+
+/*import { from } from  'rxjs';
+const vowels$ = from(['a', 'e', 'i', 'o', 'u']);
+
+vowels$.subscribe({  
+  next: x => console.log('The next vowel is: ', x),  
+  error: err => console.error('An error occurred', err),  
+  complete: () => console.log('There are no more vowels.')  
+});
+*/

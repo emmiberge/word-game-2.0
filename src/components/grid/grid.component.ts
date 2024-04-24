@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { CommonModule } from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
@@ -19,6 +19,8 @@ export class GridComponent {
     let newTile : Tile = new Tile((i+1).toString(), i % 2 == 0 ? Group.BLUE : Group.YELLOW, (i+1).toString());
     return newTile;
   })
+
+
 
 
   selected : Tile[] = [];
@@ -49,14 +51,28 @@ export class GridComponent {
     }
   }
 
+
+
   submitTiles(){
     if(this.nSelected == 4){
       var selectedTiles : Tile[] = this.tiles.filter(t => t.getIsSelected());
+      
+      console.log("Tiles selected:");
+      selectedTiles.forEach(tile => {
+        console.log(tile.getId());
+      });
+
+      console.log("N of selected tiles: " + this.nSelected);
+      // Correct guess
       if(selectedTiles.every(tile => {
         return tile.getGroup() == selectedTiles[0].getGroup();
       })){
         console.log("All tiles in same group: ", selectedTiles[0].getGroup());
+        selectedTiles.map((t) => t.find());
+        this.nSelected = 0;
       }
+
+      // Incorrect guess
       else{
         console.log("Not all tiles in same group");
         selectedTiles.forEach(t => console.log("Tile " + t.getId() + ", Group:" + t.getGroup()));
@@ -64,7 +80,7 @@ export class GridComponent {
 
     }
     else{
-      console.log("Only " + this.nSelected + "tiles chosen. Select four");
+      console.log("Only " + this.nSelected + "tiles chosen. Select four please");
     }
   }
 

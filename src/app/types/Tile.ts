@@ -41,12 +41,12 @@ export class Tile{
     }
 
     public getIsFound(){
-        console.log("Called getIsFound");
+        //console.log("Called getIsFound");
         return this.isFound;
     }
 
     public select(){
-        console.log("Should select tile with id " + this.id);
+        //console.log("Should select tile with id " + this.id);
         if(this.canBeSelected){
             console.log("Selected tile with id " + this.id);
             this.isSelected = true;
