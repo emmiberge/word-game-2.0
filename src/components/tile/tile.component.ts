@@ -14,36 +14,25 @@ import { Observable } from 'rxjs';
   templateUrl: './tile.component.html',
   styleUrl: './tile.component.css'
 })
-export class TileComponent{
-  @Input() content!: Tile;
+export class TileComponent implements OnInit{
+  @Input() color! : string;
+  @Input() word! : string;
+  @Input() id! : string;
+
 
   @Output() taskNameEvent = new EventEmitter<string>();
 
 
 
   trySelect() {
-      this.taskNameEvent.emit(this.content.getId());
-
+      this.taskNameEvent.emit(this.id);
   }
 
-  getColor() : string{
-    console.log("Should set color");
-    if(this.content.getIsFound()){
-      return GroupClass.groupColorMap.get(this.content.getGroup())!;
-    }
-    else if(this.content.getIsSelected()){
-      return 'orange';
-    }
-    else{
-      return 'green';
-    }
+  ngOnInit(){
+    console.log("Color: " + this.color);
   }
 
 
-
-  getWord(){
-    return this.content.getWord();
-  }
 }
 
 

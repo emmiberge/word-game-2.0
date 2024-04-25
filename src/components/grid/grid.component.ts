@@ -16,9 +16,27 @@ import { Group } from '../../app/types/group';
 })
 export class GridComponent {
   tiles : Tile[] = Array.from({length: 16}, (_, i) => {
-    let newTile : Tile = new Tile((i+1).toString(), i % 2 == 0 ? Group.BLUE : Group.YELLOW, (i+1).toString());
+    let newTile : Tile = new Tile((i).toString(), i % 2 == 0 ? Group.BLUE : Group.YELLOW, (i).toString());
     return newTile;
-  })
+  });
+
+  unSelectedColor : string = "green";
+  selectedColor : string = "gray";
+
+  colorArr : string[] = Array.from({length: 16}, (_, i) => {
+    return this.unSelectedColor;
+  });
+
+  setColorTile(id :string, color : string){
+
+  }
+
+  getColorTile(id : string){
+    console.log(this.colorArr);
+
+    return this.colorArr[Number(id)];
+  }
+
 
 
 
