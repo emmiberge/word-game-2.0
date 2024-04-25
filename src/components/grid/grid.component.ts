@@ -3,8 +3,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { CommonModule } from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
 import { TileComponent } from '../tile/tile.component';
-import { Tile } from '../../app/types/Tile';
-import { Group, GroupClass } from '../../app/types/group';
+import { Tile } from '../../types/Tile';
+import { Group, GroupClass } from '../../types/Group';
 
 
 @Component({

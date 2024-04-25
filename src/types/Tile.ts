@@ -1,4 +1,4 @@
-import { Group } from "./group";
+import { Group } from "./Group";
 
 export class Tile{
     private word: string;
