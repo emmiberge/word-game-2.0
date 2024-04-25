@@ -25,11 +25,12 @@ export class TileComponent implements OnInit{
 
 
   trySelect() {
-      this.taskNameEvent.emit(this.id);
+    this.taskNameEvent.emit(this.id);
+    this.word = "hello";
   }
 
   ngOnInit(){
-    console.log("Color: " + this.color);
+
   }
 
 

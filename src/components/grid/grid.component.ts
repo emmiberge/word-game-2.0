@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
 import { TileComponent } from '../tile/tile.component';
 import { Tile } from '../../app/types/Tile';
-import { Group } from '../../app/types/group';
+import { Group, GroupClass } from '../../app/types/group';
 
 
 @Component({
@@ -28,14 +28,14 @@ export class GridComponent {
   });
 
   setColorTile(id :string, color : string){
-
+    this.colorArr[Number(id)] = color;
   }
 
   getColorTile(id : string){
-    console.log(this.colorArr);
-
     return this.colorArr[Number(id)];
   }
+
+ 
 
 
 
@@ -44,9 +44,9 @@ export class GridComponent {
   selected : Tile[] = [];
   nSelected : number = 0;
 
-  trySelect(tName: string){
+  trySelect(id: string){
     console.log("Called trySelect");
-    var t : Tile = this.tiles.filter(t => t.getId() === tName)[0];
+    var t : Tile = this.tiles.filter(t => t.getId() === id)[0];
 
     console.log("id:" + t.getId());
     console.log("Can be selected:" + t.getCanBeSelected());
@@ -56,6 +56,7 @@ export class GridComponent {
       console.log("Unselected tile with id ", t.getId());
       t.deselect();
       this.nSelected--;
+      this.setColorTile(id, this.unSelectedColor);
       console.log("nSelected:" + this.nSelected);
       return;
     }
@@ -65,6 +66,7 @@ export class GridComponent {
       this.nSelected++;
       console.log("nSelected:" + this.nSelected);
       t.select();
+      this.setColorTile(id, this.selectedColor);
       return;
     }
   }
@@ -86,7 +88,10 @@ export class GridComponent {
         return tile.getGroup() == selectedTiles[0].getGroup();
       })){
         console.log("All tiles in same group: ", selectedTiles[0].getGroup());
-        selectedTiles.map((t) => t.find());
+        selectedTiles.map((t) => {
+          t.find();
+          this.setColorTile(t.getId(), GroupClass.groupColorMap.get(t.getGroup())!);
+        });
         this.nSelected = 0;
       }
 
