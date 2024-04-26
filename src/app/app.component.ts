@@ -16,6 +16,7 @@ export class AppComponent {
   title = 'word-game';
   displayText = "";
   attemptsLeft : number = 4;
+  canSubmitGuess : boolean = false;
 
   @ViewChild(GridComponent) GridComponent: any;
 
@@ -28,12 +29,20 @@ export class AppComponent {
     switch(event){
       case GameEvent.PLAYER_WON:
         this.displayText = "Congratulations, you won!";
+        this.canSubmitGuess = false;
         return;
       case GameEvent.PLAYER_LOST:
         this.displayText = "You lost :(";
+        this.canSubmitGuess = false;
         return;
       case GameEvent.WRONG_ATTEMPT:
         this.attemptsLeft--;
+        return;
+      case GameEvent.PLAYER_CAN_MAKE_GUESS:
+        this.canSubmitGuess = true;
+        return;
+      case GameEvent.PLAYER_CAN_NOT_MAKE_GUESS:
+        this.canSubmitGuess = false;
         return;
     }
   }

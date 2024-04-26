@@ -38,6 +38,7 @@ export class GridComponent implements OnInit{
       console.log(tile.getId());
       console.log(tile.getWord());
     })
+    this.sendGameEvent(GameEvent.PLAYER_CAN_NOT_MAKE_GUESS);
   }
 
   // Not good, should set id regardless of index
@@ -85,6 +86,11 @@ export class GridComponent implements OnInit{
       console.log("nSelected:" + this.nSelected);
       t.select();
       this.setColorTile(id, this.selectedColor);
+
+      if(this.nSelected == 4){
+        this.sendGameEvent(GameEvent.PLAYER_CAN_MAKE_GUESS);
+      }
+
       return;
     }
 
@@ -95,6 +101,11 @@ export class GridComponent implements OnInit{
       this.nSelected--;
       this.setColorTile(id, this.unSelectedColor);
       console.log("nSelected:" + this.nSelected);
+
+      if(this.nSelected < 4){
+        this.sendGameEvent(GameEvent.PLAYER_CAN_NOT_MAKE_GUESS);
+      }
+
       return;
     }
 
@@ -102,6 +113,8 @@ export class GridComponent implements OnInit{
   }
 
 
+  // Prevent all tiles to be selected
+  // Call when player lost
   lockAllTiles(){
     this.tiles.map(tile => {
       tile.lock();
@@ -131,6 +144,8 @@ export class GridComponent implements OnInit{
         });
         this.nSelected = 0;
         this.nFound+=4;
+
+        this.sendGameEvent(GameEvent.PLAYER_CAN_NOT_MAKE_GUESS);
 
         // Check if won
         if(this.hasWon()){

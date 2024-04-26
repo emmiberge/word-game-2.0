@@ -2,6 +2,6 @@
   <h1>Word game</h1>
   <app-grid (taskNameEvent) = 'recieveGameEvent($event)'></app-grid>
   <p>Attempts left: {{attemptsLeft}}</p>
-  <button style="margin-top: 10px;" (click)="submitChoice()" mat-raised-button>Submit</button>
+  <button disabled={{!canSubmitGuess}} style="margin-top: 10px;" (click)="submitChoice()" mat-raised-button>Submit</button>
   <p>{{displayText}}</p>
 </div>

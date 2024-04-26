@@ -2,5 +2,7 @@ export enum GameEvent{
     WRONG_ATTEMPT,
     PLAYER_WON,
     PLAYER_LOST,
-    NEW_GAME
+    NEW_GAME,
+    PLAYER_CAN_MAKE_GUESS,
+    PLAYER_CAN_NOT_MAKE_GUESS
 }
