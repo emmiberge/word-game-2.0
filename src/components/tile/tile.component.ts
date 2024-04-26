@@ -20,12 +20,12 @@ export class TileComponent implements OnInit{
   @Input() id! : string;
 
 
-  @Output() taskNameEvent = new EventEmitter<string>();
+  @Output() taskSelect = new EventEmitter<string>();
 
 
 
   trySelect() {
-    this.taskNameEvent.emit(this.id);
+    this.taskSelect.emit(this.id);
     //this.word = "hello";
   }
 

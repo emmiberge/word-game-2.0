@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { CommonModule } from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
@@ -6,6 +6,8 @@ import { TileComponent } from '../tile/tile.component';
 import { Tile } from '../../model/Tile';
 import { Group, GroupClass } from '../../model/Group';
 import { GameGenerator } from '../../model/GameGenerator';
+import { tileState } from '../../types/tileState';
+import { GameEvent } from '../../types/gameState';
 
 
 @Component({
@@ -17,15 +19,16 @@ import { GameGenerator } from '../../model/GameGenerator';
 })
 export class GridComponent implements OnInit{
 
-  gameGenerator! : GameGenerator;
   tiles! : Tile[] ;
-
   unSelectedColor : string = "green";
   selectedColor : string = "gray";
 
+  @Output() taskNameEvent = new EventEmitter<GameEvent>();
+
+
+
   ngOnInit(){
-    this.gameGenerator = new GameGenerator();
-    this.tiles = this.gameGenerator.getTiles();
+    this.tiles = new GameGenerator().getTiles();
     console.log("Before foreach");
     this.tiles.forEach((tile) => {
       console.log(tile.getId());
@@ -46,11 +49,13 @@ export class GridComponent implements OnInit{
     return this.colorArr[Number(id)];
   }
 
+
+  // Send to parent to let it know that the game is won or lost
+  sendGameEvent(){
+    this.taskNameEvent.emit(GameEvent.WRONG_ATTEMPT);
+  }
+
  
-
-
-
-
 
   selected : Tile[] = [];
   nSelected : number = 0;
@@ -63,6 +68,19 @@ export class GridComponent implements OnInit{
     console.log("Can be selected:" + t.getCanBeSelected());
     console.log("nSelected:" + this.nSelected);
 
+
+    // Select
+    if(t.getCanBeSelected() && this.nSelected < 4){
+      console.log("Select succeeded");
+      this.nSelected++;
+      console.log("nSelected:" + this.nSelected);
+      t.select();
+      this.setColorTile(id, this.selectedColor);
+      this.sendGameEvent();
+      return;
+    }
+
+    // Unselect
     if(t.getIsSelected()){
       console.log("Unselected tile with id ", t.getId());
       t.deselect();
@@ -72,14 +90,7 @@ export class GridComponent implements OnInit{
       return;
     }
 
-    else if(t.getCanBeSelected() && this.nSelected < 4){
-      console.log("Select succeeded");
-      this.nSelected++;
-      console.log("nSelected:" + this.nSelected);
-      t.select();
-      this.setColorTile(id, this.selectedColor);
-      return;
-    }
+    
   }
 
 

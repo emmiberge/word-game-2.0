@@ -31,7 +31,7 @@ export class GameGenerator{
 
     public GameGenerator(){
         this.initGame();
-        console.log("End of game generator constructor");
+        //console.log("End of game generator constructor");
     }
 
     public getTiles(){
