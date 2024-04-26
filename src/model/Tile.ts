@@ -2,6 +2,7 @@ import { Group } from "./Group";
 
 export class Tile{
     private word: string;
+    private connection: string;
     private group: Group;
     private id: string;
     private isSelected: boolean;
@@ -10,8 +11,9 @@ export class Tile{
 
 
 
-    constructor(w: string, g: Group, i: string){
+    constructor(w: string, c : string, g: Group, i: string){
         this.word = w;
+        this.connection = c;
         this.group = g;
         this.id = i;
         this.isSelected = false;
@@ -19,6 +21,9 @@ export class Tile{
         this.canBeSelected = true;
     }
 
+    public getConnection(){
+        return this.connection;
+    }
 
     public getGroup(){
         return this.group;

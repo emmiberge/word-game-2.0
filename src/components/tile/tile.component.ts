@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatCardModule} from '@angular/material/card';
-import { Tile } from '../../types/Tile';
+import { Tile } from '../../model/Tile';
 import { GridComponent } from '../grid/grid.component';
 import { tileState } from '../../types/tileState';
-import { GroupClass } from '../../types/Group';
+import { GroupClass } from '../../model/Group';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -26,7 +26,7 @@ export class TileComponent implements OnInit{
 
   trySelect() {
     this.taskNameEvent.emit(this.id);
-    this.word = "hello";
+    //this.word = "hello";
   }
 
   ngOnInit(){

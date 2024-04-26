@@ -1,10 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { CommonModule } from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
 import { TileComponent } from '../tile/tile.component';
-import { Tile } from '../../types/Tile';
-import { Group, GroupClass } from '../../types/Group';
+import { Tile } from '../../model/Tile';
+import { Group, GroupClass } from '../../model/Group';
+import { GameGenerator } from '../../model/GameGenerator';
 
 
 @Component({
@@ -14,15 +15,25 @@ import { Group, GroupClass } from '../../types/Group';
   templateUrl: './grid.component.html',
   styleUrl: './grid.component.css'
 })
-export class GridComponent {
-  tiles : Tile[] = Array.from({length: 16}, (_, i) => {
-    let newTile : Tile = new Tile((i).toString(), i % 2 == 0 ? Group.BLUE : Group.YELLOW, (i).toString());
-    return newTile;
-  });
+export class GridComponent implements OnInit{
+
+  gameGenerator! : GameGenerator;
+  tiles! : Tile[] ;
 
   unSelectedColor : string = "green";
   selectedColor : string = "gray";
 
+  ngOnInit(){
+    this.gameGenerator = new GameGenerator();
+    this.tiles = this.gameGenerator.getTiles();
+    console.log("Before foreach");
+    this.tiles.forEach((tile) => {
+      console.log(tile.getId());
+      console.log(tile.getWord());
+    })
+  }
+
+  // Not good, should set id regardless of index
   colorArr : string[] = Array.from({length: 16}, (_, i) => {
     return this.unSelectedColor;
   });
