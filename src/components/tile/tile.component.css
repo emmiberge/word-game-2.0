@@ -1,6 +1,11 @@
 .tile{
-    width: 75px;
-    height: 75px;
+    width: 90px;
+    height: 90px;
     text-align: center;
     justify-content: space-around;
+    border-radius: 20%;
+}
+
+.tileContent{
+    padding: 0px;
 }

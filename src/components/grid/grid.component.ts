@@ -20,7 +20,7 @@ import { GameEvent } from '../../types/gameEvent';
 export class GridComponent implements OnInit{
 
   tiles! : Tile[] ;
-  unSelectedColor : string = "green";
+  unSelectedColor : string = "rgb(254 254 248)";
   selectedColor : string = "gray";
   nSelected : number = 0;
   nFound : number = 0;

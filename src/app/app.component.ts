@@ -25,7 +25,7 @@ export class AppComponent {
   }
 
 
-  recieveGameEvent(event : GameEvent){
+  receiveGameEvent(event : GameEvent){
     switch(event){
       case GameEvent.PLAYER_WON:
         this.displayText = "Congratulations, you won!";

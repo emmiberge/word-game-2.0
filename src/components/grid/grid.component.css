@@ -1,5 +1,5 @@
 .tile{
-    background-color: aquamarine;
+    background-color: rgb(224, 232, 207);
 }
 
 .tileContainer{
@@ -8,6 +8,6 @@
 }
 
 .gridContainer{
-    width: 350px;
+    width: 400px;
     margin-top: 5%;
 }
