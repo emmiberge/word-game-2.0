@@ -81,36 +81,46 @@ export class GridComponent implements OnInit{
 
     // Select
     if(t.getCanBeSelected() && this.nSelected < 4){
-      console.log("Select succeeded");
-      this.nSelected++;
-      console.log("nSelected:" + this.nSelected);
-      t.select();
-      this.setColorTile(id, this.selectedColor);
-
-      if(this.nSelected == 4){
-        this.sendGameEvent(GameEvent.PLAYER_CAN_MAKE_GUESS);
-      }
-
+      this.selectTile(t);
       return;
     }
 
     // Unselect
     if(t.getIsSelected()){
-      console.log("Unselected tile with id ", t.getId());
-      t.deselect();
-      this.nSelected--;
-      this.setColorTile(id, this.unSelectedColor);
-      console.log("nSelected:" + this.nSelected);
-
-      if(this.nSelected < 4){
-        this.sendGameEvent(GameEvent.PLAYER_CAN_NOT_MAKE_GUESS);
-      }
-
+      this.unselectTile(t);
       return;
     }
 
     
   }
+
+
+  private selectTile(t : Tile){
+    console.log("Select succeeded");
+      this.nSelected++;
+      console.log("nSelected:" + this.nSelected);
+      t.select();
+      this.setColorTile(t.getId(), this.selectedColor);
+
+      if(this.nSelected == 4){
+        this.sendGameEvent(GameEvent.PLAYER_CAN_MAKE_GUESS);
+      }
+  }
+
+  private unselectTile(t : Tile){
+    console.log("Unselected tile with id ", t.getId());
+      t.deselect();
+      this.nSelected--;
+      this.setColorTile(t.getId(), this.unSelectedColor);
+      console.log("nSelected:" + this.nSelected);
+
+      if(this.nSelected < 4){
+        this.sendGameEvent(GameEvent.PLAYER_CAN_NOT_MAKE_GUESS);
+      }
+  }
+
+
+  
 
 
   // Prevent all tiles to be selected
@@ -156,7 +166,11 @@ export class GridComponent implements OnInit{
       // Incorrect guess
       else{
         console.log("Not all tiles in same group");
-        selectedTiles.forEach(t => console.log("Tile " + t.getId() + ", Group:" + t.getGroup()));
+        selectedTiles.forEach(t => {
+          console.log("Tile " + t.getId() + ", Group:" + t.getGroup());
+          this.unselectTile(t);
+        })
+
         this.nOfAttemptsLeft--;
         this.sendGameEvent(GameEvent.WRONG_ATTEMPT);
         
