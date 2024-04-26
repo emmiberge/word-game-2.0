@@ -7,7 +7,7 @@ import { Tile } from '../../model/Tile';
 import { Group, GroupClass } from '../../model/Group';
 import { GameGenerator } from '../../model/GameGenerator';
 import { tileState } from '../../types/tileState';
-import { GameEvent } from '../../types/gameState';
+import { GameEvent } from '../../types/gameEvent';
 
 
 @Component({
@@ -22,6 +22,10 @@ export class GridComponent implements OnInit{
   tiles! : Tile[] ;
   unSelectedColor : string = "green";
   selectedColor : string = "gray";
+  nSelected : number = 0;
+  nFound : number = 0;
+  nOftotalTiles : number = 16;
+  nOfAttemptsLeft : number = 4;
 
   @Output() taskNameEvent = new EventEmitter<GameEvent>();
 
@@ -37,7 +41,7 @@ export class GridComponent implements OnInit{
   }
 
   // Not good, should set id regardless of index
-  colorArr : string[] = Array.from({length: 16}, (_, i) => {
+  colorArr : string[] = Array.from({length: this.nOftotalTiles}, (_, i) => {
     return this.unSelectedColor;
   });
 
@@ -50,16 +54,21 @@ export class GridComponent implements OnInit{
   }
 
 
+  hasWon(){
+    return this.nFound == this.nOftotalTiles;
+  }
+
+
+
   // Send to parent to let it know that the game is won or lost
-  sendGameEvent(){
-    this.taskNameEvent.emit(GameEvent.WRONG_ATTEMPT);
+  sendGameEvent(event : GameEvent){
+    this.taskNameEvent.emit(event);
   }
 
  
 
-  selected : Tile[] = [];
-  nSelected : number = 0;
-
+ 
+  // Called when tile is chosen
   trySelect(id: string){
     console.log("Called trySelect");
     var t : Tile = this.tiles.filter(t => t.getId() === id)[0];
@@ -76,7 +85,6 @@ export class GridComponent implements OnInit{
       console.log("nSelected:" + this.nSelected);
       t.select();
       this.setColorTile(id, this.selectedColor);
-      this.sendGameEvent();
       return;
     }
 
@@ -94,9 +102,16 @@ export class GridComponent implements OnInit{
   }
 
 
+  lockAllTiles(){
+    this.tiles.map(tile => {
+      tile.lock();
+    })
+  }
 
+
+  // Called when player makes guess
   submitTiles(){
-    if(this.nSelected == 4){
+    if(this.nSelected == 4 && this.nOfAttemptsLeft > 0){
       var selectedTiles : Tile[] = this.tiles.filter(t => t.getIsSelected());
       
       console.log("Tiles selected:");
@@ -104,7 +119,7 @@ export class GridComponent implements OnInit{
         console.log(tile.getId());
       });
 
-      console.log("N of selected tiles: " + this.nSelected);
+
       // Correct guess
       if(selectedTiles.every(tile => {
         return tile.getGroup() == selectedTiles[0].getGroup();
@@ -115,12 +130,27 @@ export class GridComponent implements OnInit{
           this.setColorTile(t.getId(), GroupClass.groupColorMap.get(t.getGroup())!);
         });
         this.nSelected = 0;
+        this.nFound+=4;
+
+        // Check if won
+        if(this.hasWon()){
+          this.sendGameEvent(GameEvent.PLAYER_WON);
+        }
       }
 
       // Incorrect guess
       else{
         console.log("Not all tiles in same group");
         selectedTiles.forEach(t => console.log("Tile " + t.getId() + ", Group:" + t.getGroup()));
+        this.nOfAttemptsLeft--;
+        this.sendGameEvent(GameEvent.WRONG_ATTEMPT);
+        
+        // Check if lost
+        if(this.nOfAttemptsLeft == 0){
+          this.sendGameEvent(GameEvent.PLAYER_LOST);
+          this.lockAllTiles();
+        }
+        
       }
 
     }

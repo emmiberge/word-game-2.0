@@ -69,9 +69,15 @@ export class Tile{
     }
 
     public find(){
-        this.canBeSelected = false;
+        this.lock();
         this.isSelected = false;
         this.isFound = true;
+    }
+
+
+    // Prevent tile from being picked again
+    public lock(){
+        this.canBeSelected = false;
     }
 
     

@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { TileComponent } from '../components/tile/tile.component';
 import { GridComponent } from '../components/grid/grid.component';
 import {MatButtonModule} from '@angular/material/button';
-import { GameEvent } from '../types/gameState';
+import { GameEvent } from '../types/gameEvent';
 
 @Component({
   selector: 'app-root',
@@ -27,13 +27,16 @@ export class AppComponent {
   recieveGameEvent(event : GameEvent){
     switch(event){
       case GameEvent.PLAYER_WON:
-        this.displayText = "Congratulations";
+        this.displayText = "Congratulations, you won!";
         return;
       case GameEvent.PLAYER_LOST:
-        this.displayText = "You lost";
+        this.displayText = "You lost :(";
         return;
       case GameEvent.WRONG_ATTEMPT:
         this.attemptsLeft--;
+        return;
     }
   }
+
+
 }
