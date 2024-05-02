@@ -61,6 +61,24 @@ export class GridComponent implements OnInit{
   }
 
 
+  // rearrange ordering of tiles so that the found ones come first
+  putFoundTilesFirst(){
+    const foundTiles : Tile[] = [];
+    const unknownTiles : Tile[] = [];
+
+    this.tiles.forEach(t => {
+      if(t.getIsFound()){
+        foundTiles.push(t);
+      }
+      else{
+        unknownTiles.push(t);
+      }
+    })
+
+    this.tiles = foundTiles.concat(unknownTiles);
+  }
+
+
 
   // Send to parent to let it know that the game is won or lost
   sendGameEvent(event : GameEvent){
@@ -157,6 +175,7 @@ export class GridComponent implements OnInit{
         this.nFound+=4;
 
         this.sendGameEvent(GameEvent.PLAYER_CAN_NOT_MAKE_GUESS);
+        this.putFoundTilesFirst();
 
         // Check if won
         if(this.hasWon()){
