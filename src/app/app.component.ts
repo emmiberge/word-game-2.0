@@ -29,6 +29,7 @@ export class AppComponent {
   displayText = "";
   attemptsLeft : number = 4;
   canSubmitGuess : boolean = false;
+  isGameFinished : boolean = false;
 
   @ViewChild(GridComponent) GridComponent: any;
 
@@ -36,6 +37,7 @@ export class AppComponent {
 
   submitChoice(){
     this.GridComponent.submitTiles();
+    console.log(this.isGameFinished);
   }
 
   shuffleTiles(){
@@ -62,10 +64,12 @@ export class AppComponent {
       case GameEvent.PLAYER_WON:
         this.displayText = "Congratulations, you won!";
         this.canSubmitGuess = false;
+        this.isGameFinished = true;
         return;
       case GameEvent.PLAYER_LOST:
         this.displayText = "You lost :(";
         this.canSubmitGuess = false;
+        this.isGameFinished = true;
         return;
       case GameEvent.WRONG_ATTEMPT:
         this.attemptsLeft--;

@@ -27,6 +27,7 @@ export class GridComponent implements OnInit{
   nFound : number = 0;
   nOftotalTiles : number = 16;
   nOfAttemptsLeft : number = 4;
+  allTilesFound : boolean = false;
 
   @Output() taskNameEvent = new EventEmitter<GameEvent>();
 
@@ -170,6 +171,7 @@ export class GridComponent implements OnInit{
     unknownTiles = ShufflingService.shuffle(unknownTiles);
     this.tiles = foundTiles.concat(unknownTiles);
   }
+  
 
 
   // Called when player makes guess
