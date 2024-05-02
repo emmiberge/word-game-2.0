@@ -42,6 +42,7 @@ export class GameGenerator{
         }
         return this.tiles;
     }
+    
 
     // Change id????
     private initGame(){
