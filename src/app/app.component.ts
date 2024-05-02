@@ -1,14 +1,16 @@
 import { Component, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TileComponent } from '../components/tile/tile.component';
 import { GridComponent } from '../components/grid/grid.component';
 import {MatButtonModule} from '@angular/material/button';
 import { GameEvent } from '../types/gameEvent';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [MatButtonModule, RouterOutlet, GridComponent],
+  imports: [MatButtonModule, RouterOutlet, GridComponent, MatIconModule, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -23,6 +25,10 @@ export class AppComponent {
   submitChoice(){
     this.GridComponent.submitTiles();
   }
+
+  numSequence(n: number): Array<number> { 
+    return Array(n); 
+  } 
 
 
   receiveGameEvent(event : GameEvent){
