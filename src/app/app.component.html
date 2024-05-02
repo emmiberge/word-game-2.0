@@ -1,7 +1,7 @@
 <div class ="gameContainer">
-  <div style="display: flex; margin-top: 5px; margin-bottom: 0px;">
+  <div style="display: flex; margin-top: 5px; margin-bottom: 0px; ">
     <h1>Word game</h1>
-    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="question_mark" style="margin-top: 8.5px;"></mat-icon>
+    <button style="right: 35%; position: absolute;" id="about-button"(click)="openDialog()">?</button>
   </div>
   
   <p style="margin-bottom: 2px; margin-top: 10px;">Create groups of four!</p>
@@ -15,5 +15,5 @@
   
   <button disabled={{!canSubmitGuess}} style="margin-top: 10px;" (click)="submitChoice()" mat-raised-button>Submit</button>
   <p>{{displayText}}</p>
-  <button id="about-button"(click)="openDialog()">?</button>
+  
 </div>
