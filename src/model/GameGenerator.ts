@@ -1,3 +1,4 @@
+import { ShufflingService } from "../services/shuffling.service";
 import { Group } from "./Group";
 import { Tile } from "./Tile";
 
@@ -54,7 +55,7 @@ export class GameGenerator{
             return i;
           });
 
-        indexArr = this.shuffle(indexArr);
+        indexArr = ShufflingService.shuffle(indexArr);
 
         console.log(this.collection);
         console.log(indexArr);
@@ -71,21 +72,12 @@ export class GameGenerator{
         // Should shuffle
 
         
-        this.tiles = this.shuffle(tmp);
+        this.tiles = ShufflingService.shuffle(tmp);
         console.log(this.tiles);
     }
 
 
-    private shuffle<T>(arr : T[]){
-        var tmp = [...arr];
-
-        for (let i = tmp.length - 1; i > 0; i--) { 
-            const j = Math.floor(Math.random() * (i + 1)); 
-            [tmp[i], tmp[j]] = [tmp[j], tmp[i]]; 
-          } 
-        
-        return tmp; 
-    }
+    
 
     
 

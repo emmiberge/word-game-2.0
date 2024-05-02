@@ -8,6 +8,7 @@ import { Group, GroupClass } from '../../model/Group';
 import { GameGenerator } from '../../model/GameGenerator';
 import { tileState } from '../../types/tileState';
 import { GameEvent } from '../../types/gameEvent';
+import { ShufflingService } from '../../services/shuffling.service';
 
 
 @Component({
@@ -148,6 +149,13 @@ export class GridComponent implements OnInit{
     this.tiles.map(tile => {
       tile.lock();
     })
+  }
+
+  // -------------- GLOBAL -----------------
+
+  // Called when player wants to shuffle
+  shuffleTiles(){
+    this.tiles = ShufflingService.shuffle(this.tiles);
   }
 
 
