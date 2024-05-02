@@ -1,6 +1,6 @@
 .tile{
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     text-align: center;
     justify-content: space-around;
     border-radius: 20%;
@@ -10,4 +10,3 @@
     padding: 0px;
     
 }
-
