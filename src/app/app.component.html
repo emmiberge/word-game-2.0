@@ -8,8 +8,8 @@
   <app-grid (taskNameEvent) = 'receiveGameEvent($event)'></app-grid>
   <div style="display: flex;">
     <p class="textAttempts">Attempts left:</p>
-    <div *ngFor="let n of numSequence(attemptsLeft)">
-      <span class="dotAttempt"></span>
+    <div class="dotContainer" >
+      <span *ngFor="let n of numSequence(attemptsLeft)" class="dotAttempt"></span>
     </div>
   </div>
   

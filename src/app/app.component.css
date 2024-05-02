@@ -21,6 +21,12 @@ h1{
     margin-left: 4px;
 }
 
+.dotContainer{
+    display: flex;
+    width: 100px;
+    align-items: flex-start;
+}
+
 .textAttempts{
     margin-right: 5px;
     position: relative;
