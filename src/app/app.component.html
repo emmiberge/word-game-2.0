@@ -12,7 +12,7 @@
       <span *ngFor="let n of numSequence(attemptsLeft)" class="dotAttempt"></span>
     </div>
   </div>
-  
+  <button (click)="shuffleTiles()">shuffle</button>
   <button disabled={{!canSubmitGuess}} style="margin-top: 10px;" id="submit-button" (click)="submitChoice()" mat-raised-button>Submit</button>
   <p>{{displayText}}</p>
   

@@ -155,7 +155,20 @@ export class GridComponent implements OnInit{
 
   // Called when player wants to shuffle
   shuffleTiles(){
-    this.tiles = ShufflingService.shuffle(this.tiles);
+    const foundTiles : Tile[] = [];
+    var unknownTiles : Tile[] = [];
+
+    this.tiles.forEach(t => {
+      if(t.getIsFound()){
+        foundTiles.push(t);
+      }
+      else{
+        unknownTiles.push(t);
+      }
+    })
+
+    unknownTiles = ShufflingService.shuffle(unknownTiles);
+    this.tiles = foundTiles.concat(unknownTiles);
   }
 
 

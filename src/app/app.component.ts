@@ -38,6 +38,10 @@ export class AppComponent {
     this.GridComponent.submitTiles();
   }
 
+  shuffleTiles(){
+    this.GridComponent.shuffleTiles();
+  }
+
   numSequence(n: number): Array<number> { 
     return Array(n); 
   } 
