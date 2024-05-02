@@ -141,6 +141,13 @@ export class GridComponent implements OnInit{
   }
 
 
+  unSelectAllTiles(){
+    this.tiles.forEach(t => {
+      if(t.getIsSelected()){
+        this.unselectTile(t);
+      }
+    })
+  }
   
 
 
@@ -209,10 +216,7 @@ export class GridComponent implements OnInit{
       // Incorrect guess
       else{
         console.log("Not all tiles in same group");
-        selectedTiles.forEach(t => {
-          console.log("Tile " + t.getId() + ", Group:" + t.getGroup());
-          this.unselectTile(t);
-        })
+        this.unSelectAllTiles();
 
         this.nOfAttemptsLeft--;
         this.sendGameEvent(GameEvent.WRONG_ATTEMPT);

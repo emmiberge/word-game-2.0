@@ -30,6 +30,7 @@ export class AppComponent {
   attemptsLeft : number = 4;
   canSubmitGuess : boolean = false;
   isGameFinished : boolean = false;
+  isAnyTileChosen : boolean = false;
 
   @ViewChild(GridComponent) GridComponent: any;
 
@@ -42,6 +43,10 @@ export class AppComponent {
 
   shuffleTiles(){
     this.GridComponent.shuffleTiles();
+  }
+
+  deselectAllTiles(){
+    this.GridComponent.unSelectAllTiles();
   }
 
   numSequence(n: number): Array<number> { 
@@ -80,6 +85,11 @@ export class AppComponent {
       case GameEvent.PLAYER_CAN_NOT_MAKE_GUESS:
         this.canSubmitGuess = false;
         return;
+      case GameEvent.AT_LEAST_ONE_TILE_CHOSEN:
+        this.isAnyTileChosen = true;
+        return;
+      case GameEvent.NO_TILES_CHOSEN:
+        this.isAnyTileChosen = false;
     }
   }
 
