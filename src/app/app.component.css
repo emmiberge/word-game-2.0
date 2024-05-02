@@ -32,5 +32,25 @@ h1{
     position: relative;
 }
 
+#about-button{
+    background-color: rgb(181, 176, 176);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: large;
+    box-shadow: 2px 2px;
+    border: 1px;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+#about-button:hover{
+    background-color: whitesmoke;
+    opacity: 1;
+    box-shadow: 3px 3px;
+    cursor: pointer;
+    
+}
+
 
 
