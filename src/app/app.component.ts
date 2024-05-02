@@ -6,6 +6,16 @@ import { GridComponent } from '../components/grid/grid.component';
 import {MatButtonModule} from '@angular/material/button';
 import { GameEvent } from '../types/gameEvent';
 import {MatIconModule} from '@angular/material/icon';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+  MatDialogClose,
+} from '@angular/material/dialog';
+import { AboutDialogComponent } from '../components/about-dialog/about-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +32,8 @@ export class AppComponent {
 
   @ViewChild(GridComponent) GridComponent: any;
 
+  constructor(public dialog: MatDialog) {}
+
   submitChoice(){
     this.GridComponent.submitTiles();
   }
@@ -29,6 +41,16 @@ export class AppComponent {
   numSequence(n: number): Array<number> { 
     return Array(n); 
   } 
+
+  openDialog(){
+    const dialogRef = this.dialog.open(AboutDialogComponent, {
+      data : {text: "22222"}
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 
 
   receiveGameEvent(event : GameEvent){
@@ -55,3 +77,4 @@ export class AppComponent {
 
 
 }
+
