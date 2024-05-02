@@ -27,6 +27,7 @@ export class GameGenerator{
     private groups = [Group.BLUE, Group.ORANGE, Group.PINK, Group.YELLOW];
     private collection : WordCollection[] = data;
     private tiles! : Tile[];
+    private amountOfTiles = 16;
 
 
     public GameGenerator(){
@@ -46,14 +47,22 @@ export class GameGenerator{
     private initGame(){
         console.log("Called initGame model");
         var tmp : Tile[] = [];
-        var id = 0;
         var groupIndex = 0;
+        var indexId = 0;
+        var indexArr : number[] = Array.from({length: this.amountOfTiles}, (_, i) => {
+            return i;
+          });
+
+        indexArr = this.shuffle(indexArr);
+
+        console.log(this.collection);
+        console.log(indexArr);
 
         this.collection.forEach(collection => {
             collection.words.forEach(word => {
-                const tile : Tile = new Tile(word, collection.connection, this.groups[groupIndex], id.toString());
+                const tile : Tile = new Tile(word, collection.connection, this.groups[groupIndex], indexArr[indexId].toString());
                 tmp.push(tile);
-                id++;
+                indexId++;
             });
             groupIndex++;
         });
@@ -61,8 +70,23 @@ export class GameGenerator{
         // Should shuffle
 
         
-        this.tiles = [...tmp];
+        this.tiles = this.shuffle(tmp);
+        console.log(this.tiles);
     }
+
+
+    private shuffle<T>(arr : T[]){
+        var tmp = [...arr];
+
+        for (let i = tmp.length - 1; i > 0; i--) { 
+            const j = Math.floor(Math.random() * (i + 1)); 
+            [tmp[i], tmp[j]] = [tmp[j], tmp[i]]; 
+          } 
+        
+        return tmp; 
+    }
+
+    
 
 
 

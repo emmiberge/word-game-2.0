@@ -1,6 +1,6 @@
 import { Group } from "./Group";
 
-export class Tile{
+export class Tile {
     private word: string;
     private connection: string;
     private group: Group;

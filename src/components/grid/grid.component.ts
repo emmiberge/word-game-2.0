@@ -55,6 +55,7 @@ export class GridComponent implements OnInit{
   }
 
 
+  // Returns true if player has won
   hasWon(){
     return this.nFound == this.nOftotalTiles;
   }
