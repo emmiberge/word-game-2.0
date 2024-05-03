@@ -22,7 +22,7 @@ export class GridComponent{
 
   tiles! : Tile[] ;
   colorArr! : string[];
-  unSelectedColor : string = "rgb(254 254 248)";
+  unSelectedColor : string = "rgb(233, 234, 232)";
   selectedColor : string = "gray";
   nOftotalTiles : number = 16;
   nSelected! : number;

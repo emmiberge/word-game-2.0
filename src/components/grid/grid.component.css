@@ -3,11 +3,12 @@
 }
 
 .tileContainer{
-    padding-left: 2px;
+    /*padding-left: 2px;*/
     width: fit-content;
+    height: 30px;
 }
 
 .gridContainer{
-    width: 375px;
+    width: 400px;
     margin-top: 5%;
 }

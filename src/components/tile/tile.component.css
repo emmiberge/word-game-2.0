@@ -1,11 +1,11 @@
 .tile{
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 75px;
     text-align: center;
     justify-content: space-around;
     border-radius: 20%;
     font-weight: bold;
-    font-size:x-small;
+    font-size: small;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
