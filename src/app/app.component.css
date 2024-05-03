@@ -62,12 +62,13 @@ h1{
 /*<button disabled={{isGameFinished}} id="shuffle-button" (click)="shuffleTiles()" mat-raised-button>Shuffle</button>*/
 .button-in-row{
     border-radius: 20px;
-    box-shadow: 2px 2px;
+    border-color: rgb(165, 165, 165);
+    /*box-shadow: 2px 2px;*/
     margin: 2px;
 }
 
 .button-in-row:hover{
-    box-shadow: 0.5px 0.5px 0px 0px;
+    border-color: black;
 }
 
 .button-in-row:click{
