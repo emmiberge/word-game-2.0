@@ -122,6 +122,7 @@ export class GridComponent implements OnInit{
       console.log("nSelected:" + this.nSelected);
       t.select();
       this.setColorTile(t.getId(), this.selectedColor);
+      this.sendGameEvent(GameEvent.AT_LEAST_ONE_TILE_CHOSEN);
 
       if(this.nSelected == 4){
         this.sendGameEvent(GameEvent.PLAYER_CAN_MAKE_GUESS);
@@ -137,6 +138,10 @@ export class GridComponent implements OnInit{
 
       if(this.nSelected < 4){
         this.sendGameEvent(GameEvent.PLAYER_CAN_NOT_MAKE_GUESS);
+      }
+
+      if(this.nSelected == 0){
+        this.sendGameEvent(GameEvent.NO_TILES_CHOSEN);
       }
   }
 
@@ -190,6 +195,9 @@ export class GridComponent implements OnInit{
       selectedTiles.forEach(tile => {
         console.log(tile.getId());
       });
+
+
+      this.sendGameEvent(GameEvent.NO_TILES_CHOSEN);
 
 
       // Correct guess

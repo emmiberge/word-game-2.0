@@ -14,8 +14,8 @@
   </div>
   <div class="button-row">
     <button disabled={{isGameFinished}} class="button-in-row" (click)="shuffleTiles()" mat-raised-button>Shuffle</button>
+    <button disabled={{!isAnyTileChosen}} class="button-in-row" (click)="deselectAllTiles()" mat-raised-button>Deselect all</button>
     <button disabled={{!canSubmitGuess}} class="button-in-row" (click)="submitChoice()" mat-raised-button>Submit</button>
-    <button (click)="deselectAllTiles()">Deselect all</button>
   </div>
   
   <p>{{displayText}}</p>

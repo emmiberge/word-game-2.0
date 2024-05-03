@@ -28,13 +28,22 @@ export class AppComponent {
   title = 'word-game';
   displayText = "";
   attemptsLeft : number = 4;
-  canSubmitGuess : boolean = false;
-  isGameFinished : boolean = false;
-  isAnyTileChosen : boolean = false;
+  canSubmitGuess! : boolean;
+  isGameFinished! : boolean;
+  isAnyTileChosen! : boolean;
 
   @ViewChild(GridComponent) GridComponent: any;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) {
+    this.initGame();
+  }
+
+  initGame(){
+    this.canSubmitGuess = false;
+    this.isGameFinished = false;
+    this.isAnyTileChosen = false;
+  }
+
 
   submitChoice(){
     this.GridComponent.submitTiles();
@@ -46,6 +55,7 @@ export class AppComponent {
   }
 
   deselectAllTiles(){
+    console.log("Clicked delsect all tiles");
     this.GridComponent.unSelectAllTiles();
   }
 
@@ -63,6 +73,12 @@ export class AppComponent {
     });
   }
 
+
+  newGame(){
+    this.initGame();
+  }
+
+ 
 
   receiveGameEvent(event : GameEvent){
     switch(event){
@@ -87,9 +103,12 @@ export class AppComponent {
         return;
       case GameEvent.AT_LEAST_ONE_TILE_CHOSEN:
         this.isAnyTileChosen = true;
+        console.log("At least one tile chosen");
         return;
       case GameEvent.NO_TILES_CHOSEN:
         this.isAnyTileChosen = false;
+        console.log("No tiles chosen");
+        return;
     }
   }
 
