@@ -21,13 +21,15 @@ import { ShufflingService } from '../../services/shuffling.service';
 export class GridComponent{
 
   tiles! : Tile[] ;
+  colorArr! : string[];
   unSelectedColor : string = "rgb(254 254 248)";
   selectedColor : string = "gray";
+  nOftotalTiles : number = 16;
   nSelected! : number;
   nFound! : number;
-  nOftotalTiles : number = 16;
   nOfAttemptsLeft! : number;
   allTilesFound! : boolean;
+  
 
   @Output() taskNameEvent = new EventEmitter<GameEvent>();
 
@@ -42,6 +44,7 @@ export class GridComponent{
     this.nOfAttemptsLeft = 4;
     this.allTilesFound = false;
 
+    // Generate tiles
     this.tiles = new GameGenerator().getTiles();
     console.log("Before foreach");
     this.tiles.forEach((tile) => {
@@ -49,6 +52,11 @@ export class GridComponent{
       console.log(tile.getWord());
     })
     this.sendGameEvent(GameEvent.PLAYER_CAN_NOT_MAKE_GUESS);
+
+    // Set colors of tiles
+    this.colorArr = Array.from({length: this.nOftotalTiles}, (_, i) => {
+      return this.unSelectedColor;
+    });
   }
 
   newGame(){
@@ -58,9 +66,7 @@ export class GridComponent{
  
 
   // Not good, should set id regardless of index
-  colorArr : string[] = Array.from({length: this.nOftotalTiles}, (_, i) => {
-    return this.unSelectedColor;
-  });
+ 
 
   setColorTile(id :string, color : string){
     this.colorArr[Number(id)] = color;

@@ -26,8 +26,8 @@ import { AboutDialogComponent } from '../components/about-dialog/about-dialog.co
 })
 export class AppComponent {
   title = 'word-game';
-  displayText = "";
-  attemptsLeft : number = 4;
+  displayText! : string;
+  attemptsLeft! : number;
   canSubmitGuess! : boolean;
   isGameFinished! : boolean;
   isAnyTileChosen! : boolean;
@@ -42,6 +42,8 @@ export class AppComponent {
     this.canSubmitGuess = false;
     this.isGameFinished = false;
     this.isAnyTileChosen = false;
+    this.attemptsLeft = 4;
+    this.displayText = " ";
   }
 
 
@@ -76,6 +78,7 @@ export class AppComponent {
 
   newGame(){
     this.initGame();
+    this.GridComponent.newGame();
   }
 
  
