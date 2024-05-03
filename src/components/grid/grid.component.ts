@@ -18,22 +18,30 @@ import { ShufflingService } from '../../services/shuffling.service';
   templateUrl: './grid.component.html',
   styleUrl: './grid.component.css'
 })
-export class GridComponent implements OnInit{
+export class GridComponent{
 
   tiles! : Tile[] ;
   unSelectedColor : string = "rgb(254 254 248)";
   selectedColor : string = "gray";
-  nSelected : number = 0;
-  nFound : number = 0;
+  nSelected! : number;
+  nFound! : number;
   nOftotalTiles : number = 16;
-  nOfAttemptsLeft : number = 4;
-  allTilesFound : boolean = false;
+  nOfAttemptsLeft! : number;
+  allTilesFound! : boolean;
 
   @Output() taskNameEvent = new EventEmitter<GameEvent>();
 
 
+  constructor(){
+    this.initGame();
+  }
 
-  ngOnInit(){
+  initGame(){
+    this.nSelected = 0;
+    this.nFound = 0;
+    this.nOfAttemptsLeft = 4;
+    this.allTilesFound = false;
+
     this.tiles = new GameGenerator().getTiles();
     console.log("Before foreach");
     this.tiles.forEach((tile) => {
@@ -42,6 +50,12 @@ export class GridComponent implements OnInit{
     })
     this.sendGameEvent(GameEvent.PLAYER_CAN_NOT_MAKE_GUESS);
   }
+
+  newGame(){
+    this.initGame();
+  }
+
+ 
 
   // Not good, should set id regardless of index
   colorArr : string[] = Array.from({length: this.nOftotalTiles}, (_, i) => {
@@ -61,6 +75,9 @@ export class GridComponent implements OnInit{
   hasWon(){
     return this.nFound == this.nOftotalTiles;
   }
+
+
+  
 
 
   // rearrange ordering of tiles so that the found ones come first
