@@ -62,7 +62,7 @@ export class GameGenerator{
 
         this.collection.forEach(collection => {
             collection.words.forEach(word => {
-                const tile : Tile = new Tile(word, collection.connection, this.groups[groupIndex], indexArr[indexId].toString());
+                const tile : Tile = new Tile(word.toUpperCase(), collection.connection, this.groups[groupIndex], indexArr[indexId].toString());
                 tmp.push(tile);
                 indexId++;
             });
