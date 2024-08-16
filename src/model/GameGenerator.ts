@@ -2,7 +2,7 @@ import { ShufflingService } from "../services/shuffling.service";
 import { Group } from "./Group";
 import { Tile } from "./Tile";
 
-interface WordCollection{
+export interface WordCollection{
     words : string[],
     connection : string
 }
@@ -25,7 +25,7 @@ const data : WordCollection[] = [
     A factory for generating words for a game
 */
 export class GameGenerator{
-    private groups = [Group.BLUE, Group.ORANGE, Group.PINK, Group.YELLOW];
+    private groups = [Group.BLUE, Group.PURPLE, Group.PINK, Group.YELLOW];
     private collection : WordCollection[] = data;
     private tiles! : Tile[];
     private amountOfTiles = 16;
@@ -42,6 +42,11 @@ export class GameGenerator{
             this.initGame();
         }
         return this.tiles;
+    }
+
+    public static getExampleWordCollection() : WordCollection{
+        return {words : ["Nova", "Star", "Market", "Hero"],
+        connection : "Super ___"};
     }
     
 
