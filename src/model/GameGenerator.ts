@@ -10,7 +10,7 @@ export interface WordCollection{
 
 
 
-const data : WordCollection[] = [
+const simpleExample : WordCollection[] = [
     {words : ["Cat", "Dog", "Horse", "Hamster"],
     connection : "Animals"},
     {words : ["Cake", "Pudding", "Tiramisu", "Ice cream"],
@@ -19,6 +19,17 @@ const data : WordCollection[] = [
     connection : "Shapes"},
     {words : ["Fire", "Water", "Earth", "Wind"],
     connection : "Elements"}
+];
+
+const realisticExample : WordCollection[] = [
+    {words : ["Note", "Scale", "Chord", "Key"],
+    connection: "Related to music"},
+    {words: ["Polar", "Brown", "Black", "Panda"],
+    connection: "Types of bears"},
+    {words : ["Cream", "Berg", "Skate", "Breaker"],
+    connection: "Starts with Ice"},
+    {words : ["Season", "Cycle", "Stage", "Age"],
+    connection: "Periods of time"}
 ]
 
 /*
@@ -26,7 +37,7 @@ const data : WordCollection[] = [
 */
 export class GameGenerator{
     private groups = [Group.BLUE, Group.PURPLE, Group.PINK, Group.YELLOW];
-    private collection : WordCollection[] = data;
+    private collection : WordCollection[] = realisticExample;
     private tiles! : Tile[];
     private amountOfTiles = 16;
 
