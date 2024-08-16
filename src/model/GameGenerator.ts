@@ -32,12 +32,23 @@ const realisticExample : WordCollection[] = [
     connection: "Periods of time"}
 ]
 
+const realisticExample2 : WordCollection[] = [
+    {words: ["Ash", "Walnut", "Maple", "Pine"],
+    connection: "Types of trees"},
+    {words : ["Cover", "Shelter", "Barrier", "Insurance"],
+    connection: "Protection"},
+    {words: ["Chest", "Safe", "Vault", "Locker"],
+    connection: "For safekeeping"},
+    {words: ["Fly", "Fighter", "Truck", "Work"],
+    connection: "Starts with fire"}
+]
+
 /*
     A factory for generating words for a game
 */
 export class GameGenerator{
     private groups = [Group.BLUE, Group.PURPLE, Group.PINK, Group.YELLOW];
-    private collection : WordCollection[] = realisticExample;
+    private collection : WordCollection[] = realisticExample2;
     private tiles! : Tile[];
     private amountOfTiles = 16;
 
