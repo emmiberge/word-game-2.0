@@ -23,6 +23,8 @@
   
   <p>{{displayText}}</p>
 
-  <button (click)="newGame()">New game</button>
-  
+  <button *ngIf="isGameFinished"  class="button-in-row" (click)="newGame()" mat-stroked-button>New Game</button>
+  <app-finished-row [color]= 'exampleColor' [word_explanation] ='exampleWE'></app-finished-row>
+
+
 </div>

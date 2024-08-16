@@ -6,6 +6,7 @@ import { GridComponent } from '../components/grid/grid.component';
 import {MatButtonModule} from '@angular/material/button';
 import { GameEvent } from '../types/gameEvent';
 import {MatIconModule} from '@angular/material/icon';
+import { FinishedRowComponent } from '../components/finished-row/finished-row.component';
 import {
   MatDialog,
   MAT_DIALOG_DATA,
@@ -16,11 +17,12 @@ import {
   MatDialogClose,
 } from '@angular/material/dialog';
 import { AboutDialogComponent } from '../components/about-dialog/about-dialog.component';
+import { GameGenerator, WordCollection } from '../model/GameGenerator';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [MatButtonModule, RouterOutlet, GridComponent, MatIconModule, CommonModule],
+  imports: [MatButtonModule, RouterOutlet, GridComponent, MatIconModule, CommonModule, FinishedRowComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -31,6 +33,9 @@ export class AppComponent {
   canSubmitGuess! : boolean;
   isGameFinished! : boolean;
   isAnyTileChosen! : boolean;
+
+  exampleColor : string = "blue";
+  exampleWE : WordCollection = GameGenerator.getExampleWordCollection();
 
   @ViewChild(GridComponent) GridComponent: any;
 
