@@ -1,5 +1,20 @@
 .container{
     background-color: blueviolet;
     height: 50px; 
-    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.option{
+    background-color: chartreuse;
+    height: 90%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    margin-right: 2px;
 }
