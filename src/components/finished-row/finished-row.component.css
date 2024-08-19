@@ -1,0 +1,21 @@
+.container{
+    width: inherit;
+    height: 100px;
+    background-color: whitesmoke;
+}
+
+.title{
+    font-size:20px;
+    text-align: center;
+    height: 40%;
+    padding-top: 12px;
+    text-transform: uppercase;
+}
+
+.words{
+    font-size: 17px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: -7px;
+    
+}

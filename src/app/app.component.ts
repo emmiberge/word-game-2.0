@@ -35,7 +35,7 @@ export class AppComponent {
   isGameFinished! : boolean;
   isAnyTileChosen! : boolean;
 
-  exampleColor : string = "blue";
+  exampleColor : string = "yellow";
   exampleWE : WordCollection = GameGenerator.getExampleWordCollection();
 
   @ViewChild(GridComponent) GridComponent: any;

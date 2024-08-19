@@ -12,7 +12,10 @@
   <app-toolbar style="width: 100%;"></app-toolbar>
   <div class="inner-container">
     <p style="margin-bottom: 10px; margin-top: 18px;">Create groups of four!</p>
-    <app-grid (taskNameEvent) = 'receiveGameEvent($event)'></app-grid>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <app-finished-row style="width: 585px;" [color]= 'exampleColor' [word_explanation] ='exampleWE'></app-finished-row>
+      <app-grid (taskNameEvent) = 'receiveGameEvent($event)'></app-grid>
+    </div>
     <div style="display: flex;">
       <p class="textAttempts">Attempts left:</p>
       <div class="dotContainer" >
@@ -29,7 +32,7 @@
   <p>{{displayText}}</p>
 
   <button *ngIf="isGameFinished"  class="button-in-row" (click)="newGame()" mat-stroked-button>New Game</button>
-  <app-finished-row [color]= 'exampleColor' [word_explanation] ='exampleWE'></app-finished-row>
+  
 
 </div>
 </div>
