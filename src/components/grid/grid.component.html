@@ -1,5 +1,5 @@
 <div class="gridContainer">
-        <div *ngFor="let item of tiles">
+        <div *ngFor="let item of tilesNotGroupedYet">
               <app-tile [word] = 'item.getWord()' [id] = item.getId() [color]='getColorTile(item.getId())' (taskSelect)='trySelect($event)'></app-tile>
         </div>    
 </div>

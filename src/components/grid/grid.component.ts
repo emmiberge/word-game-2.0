@@ -5,7 +5,7 @@ import {MatCardModule} from '@angular/material/card';
 import { TileComponent } from '../tile/tile.component';
 import { Tile } from '../../model/Tile';
 import { Group, GroupClass } from '../../model/Group';
-import { GameGenerator } from '../../model/GameGenerator';
+import { GameGenerator, WordCollection } from '../../model/GameGenerator';
 import { tileState } from '../../types/tileState';
 import { GameEvent } from '../../types/gameEvent';
 import { ShufflingService } from '../../services/shuffling.service';
@@ -20,7 +20,7 @@ import { ShufflingService } from '../../services/shuffling.service';
 })
 export class GridComponent{
 
-  tiles! : Tile[] ;
+  tilesNotGroupedYet! : Tile[] ;
   colorArr! : string[];
   unSelectedColor : string = "rgb(233, 234, 232)";
   selectedColor : string = "gray";
@@ -29,10 +29,11 @@ export class GridComponent{
   nFound! : number;
   nOfAttemptsLeft! : number;
   allTilesFound! : boolean;
+  gameGenerator! : GameGenerator;
   
 
   @Output() taskNameEvent = new EventEmitter<GameEvent>();
-
+  @Output() correctGuess = new EventEmitter<WordCollection>();
 
   constructor(){
     this.initGame();
@@ -45,9 +46,10 @@ export class GridComponent{
     this.allTilesFound = false;
 
     // Generate tiles
-    this.tiles = new GameGenerator().getTiles();
+    this.gameGenerator = new GameGenerator();
+    this.tilesNotGroupedYet = this.gameGenerator.getTiles();
     console.log("Before foreach");
-    this.tiles.forEach((tile) => {
+    this.tilesNotGroupedYet.forEach((tile) => {
       console.log(tile.getId());
       console.log(tile.getWord());
     })
@@ -61,6 +63,31 @@ export class GridComponent{
 
   newGame(){
     this.initGame();
+  }
+
+  // Send to parent to let it know that the game is won or lost
+  sendGameEvent(event : GameEvent){
+    this.taskNameEvent.emit(event);
+  }
+
+  
+
+  // Send to parent to create a new finished row
+  // Removes the correctly guessed tiles from this component
+  private madeCorrectGuess(){
+    var selectedTiles : Tile[] = this.tilesNotGroupedYet.filter(t => t.getIsSelected());
+
+
+
+    // Remove grouped tiles
+    var unSelectedTiles : Tile[] = this.tilesNotGroupedYet.filter(t => !t.getIsSelected());
+    this.tilesNotGroupedYet = [...unSelectedTiles];
+
+    this.sendCorrectGuess(this.gameGenerator.tilesToWordCollection(selectedTiles))
+  }
+
+  sendCorrectGuess(selectedTiles : WordCollection){
+    this.correctGuess.emit(selectedTiles);
   }
 
  
@@ -91,7 +118,7 @@ export class GridComponent{
     const foundTiles : Tile[] = [];
     const unknownTiles : Tile[] = [];
 
-    this.tiles.forEach(t => {
+    this.tilesNotGroupedYet.forEach(t => {
       if(t.getIsFound()){
         foundTiles.push(t);
       }
@@ -100,15 +127,13 @@ export class GridComponent{
       }
     })
 
-    this.tiles = foundTiles.concat(unknownTiles);
+    this.tilesNotGroupedYet = foundTiles.concat(unknownTiles);
   }
 
 
 
-  // Send to parent to let it know that the game is won or lost
-  sendGameEvent(event : GameEvent){
-    this.taskNameEvent.emit(event);
-  }
+  
+  
 
  
 
@@ -116,7 +141,7 @@ export class GridComponent{
   // Called when tile is chosen
   trySelect(id: string){
     console.log("Called trySelect");
-    var t : Tile = this.tiles.filter(t => t.getId() === id)[0];
+    var t : Tile = this.tilesNotGroupedYet.filter(t => t.getId() === id)[0];
 
     console.log("id:" + t.getId());
     console.log("Can be selected:" + t.getCanBeSelected());
@@ -170,7 +195,7 @@ export class GridComponent{
 
 
   unSelectAllTiles(){
-    this.tiles.forEach(t => {
+    this.tilesNotGroupedYet.forEach(t => {
       if(t.getIsSelected()){
         this.unselectTile(t);
       }
@@ -182,7 +207,7 @@ export class GridComponent{
   // Prevent all tiles to be selected
   // Call when player lost
   lockAllTiles(){
-    this.tiles.map(tile => {
+    this.tilesNotGroupedYet.map(tile => {
       tile.lock();
     })
   }
@@ -194,7 +219,7 @@ export class GridComponent{
     const foundTiles : Tile[] = [];
     var unknownTiles : Tile[] = [];
 
-    this.tiles.forEach(t => {
+    this.tilesNotGroupedYet.forEach(t => {
       if(t.getIsFound()){
         foundTiles.push(t);
       }
@@ -204,7 +229,7 @@ export class GridComponent{
     })
 
     unknownTiles = ShufflingService.shuffle(unknownTiles);
-    this.tiles = foundTiles.concat(unknownTiles);
+    this.tilesNotGroupedYet = foundTiles.concat(unknownTiles);
   }
   
 
@@ -212,7 +237,7 @@ export class GridComponent{
   // Called when player makes guess
   submitTiles(){
     if(this.nSelected == 4 && this.nOfAttemptsLeft > 0){
-      var selectedTiles : Tile[] = this.tiles.filter(t => t.getIsSelected());
+      var selectedTiles : Tile[] = this.tilesNotGroupedYet.filter(t => t.getIsSelected());
       
       console.log("Tiles selected:");
       selectedTiles.forEach(tile => {

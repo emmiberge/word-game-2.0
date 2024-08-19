@@ -9,8 +9,15 @@ import { WordCollection } from '../../model/GameGenerator';
   styleUrl: './finished-row.component.css'
 })
 export class FinishedRowComponent {
+  
   @Input() color! : string;
-  @Input() word_explanation! : WordCollection;
+  @Input() word_collection! : WordCollection;
 
+  correctGuesses : WordCollection[] = [];
+
+
+  addCorrectGuess(collection : WordCollection){
+    this.correctGuesses.push(collection);
+  }
 
 }

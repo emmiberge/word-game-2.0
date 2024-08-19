@@ -39,6 +39,7 @@ export class AppComponent {
   exampleWE : WordCollection = GameGenerator.getExampleWordCollection();
 
   @ViewChild(GridComponent) GridComponent: any;
+  @ViewChild(FinishedRowComponent) FinishedRowComponent : any;
 
   constructor() {
     this.initGame();
@@ -79,6 +80,10 @@ export class AppComponent {
     this.GridComponent.newGame();
   }
 
+  // Recieves a correct guess from grid component, forwards to finished row
+  /*forwardCorrectGuess(collection : WordCollection){
+    FinishedRowComponent.addCorrectGuess(collection);
+  }*/
  
 
   receiveGameEvent(event : GameEvent){
