@@ -11,6 +11,6 @@
 .gridContainer{
     display: grid;
     grid-template-columns: auto auto auto auto;
-    gap: 10px;
+    gap: 8px;
     padding: 10px;
 }
