@@ -1,7 +1,5 @@
 <div class="gridContainer">
-    <mat-grid-list cols="4" rowHeight="1:1">
-        <mat-grid-tile colspan="1" class="tileContainer" *ngFor="let item of tiles">
+        <div *ngFor="let item of tiles">
               <app-tile [word] = 'item.getWord()' [id] = item.getId() [color]='getColorTile(item.getId())' (taskSelect)='trySelect($event)'></app-tile>
-        </mat-grid-tile>
-    </mat-grid-list>
+        </div>    
 </div>

@@ -9,6 +9,8 @@
 }
 
 .gridContainer{
-    width: 400px;
-    margin-top: 5%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px;
+    padding: 10px;
 }
