@@ -103,6 +103,27 @@ export class GameGenerator{
         console.log(this.tiles);
     }
 
+    public tilesToWordCollection(arr : Tile[]): WordCollection{
+        // Chek valid amount of tiles and that they are all in the same group
+        if(arr.length != 4){
+            throw new RangeError("Wrong amount of tiles submitted");
+        }
+
+        const allTilesSameGroup = arr.every(t => t.getGroup() === arr[0].getGroup());
+
+        if(!allTilesSameGroup){
+            throw new Error("Tiles of different groups");
+        }
+
+        // Convert
+        const wordsArr : string[] = arr.map(t => t.getWord());
+        return {words: wordsArr, connection: arr[0].getConnection()}
+
+
+    }
+
+
+
 
     
 
