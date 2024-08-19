@@ -1,20 +1,26 @@
 .container{
-    background-color: blueviolet;
-    height: 50px; 
+    height: 48px; 
     display: flex;
     justify-content: end;
     align-items: center;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    padding: 2px;
+    padding-right: 30%;
 }
 
 .option{
-    background-color: chartreuse;
-    height: 90%;
-    width: 30%;
+    background-color: inherit;
+    height: 40px;
+    width: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-color: black;
-    border-width: 1px;
-    border-style: solid;
+    border: 3px solid black;
+    border-radius: 50%;
     margin-right: 2px;
+    color: black;
+    font-weight: bold;
+    font-size: 32px;
 }

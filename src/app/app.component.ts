@@ -16,7 +16,7 @@ import {
   MatDialogActions,
   MatDialogClose,
 } from '@angular/material/dialog';
-import { AboutDialogComponent } from '../components/about-dialog/about-dialog.component';
+
 import { GameGenerator, WordCollection } from '../model/GameGenerator';
 import { ToolbarComponent } from "../components/toolbar/toolbar.component";
 
@@ -40,7 +40,7 @@ export class AppComponent {
 
   @ViewChild(GridComponent) GridComponent: any;
 
-  constructor(public dialog: MatDialog) {
+  constructor() {
     this.initGame();
   }
 
@@ -71,15 +71,7 @@ export class AppComponent {
     return Array(n); 
   } 
 
-  openDialog(){
-    const dialogRef = this.dialog.open(AboutDialogComponent, {
-      data : {text: "22222"}
-    })
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
+  
 
 
   newGame(){

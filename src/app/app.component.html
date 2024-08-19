@@ -1,13 +1,16 @@
+<div style="margin-left: 20px;">
+  <p> <span style="font-weight: bold;">NOTE: </span> This webpage was made for educational purposes. Inspiration was taken from other websites.</p>
+  <a href="https://www.nytimes.com/games/connections">New York Times Connections</a>
+  <p></p>
+  <a href="https://connectionsgame.org/">Connections game</a>
+</div>
 <div class ="container">
-  <h1>Word game</h1>
+  <div class="title">
+    <h1>Connections</h1>
+  </div>
+  
   <app-toolbar style="width: 100%;"></app-toolbar>
   <div class="inner-container">
-    
-    
-  
-  
-
-  
     <p style="margin-bottom: 2px; margin-top: 10px;">Create groups of four!</p>
     <app-grid (taskNameEvent) = 'receiveGameEvent($event)'></app-grid>
     <div style="display: flex;">

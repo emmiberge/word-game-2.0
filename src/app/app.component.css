@@ -13,10 +13,12 @@
     align-items: center;
 }
 
-h1{
-    margin-bottom: 5px;
-    margin-top: 0px;
+.title{
+    padding-top: 24px;
+    padding-bottom: 24px;
 }
+
+
 
 .dotAttempt{
     width: 17px;
