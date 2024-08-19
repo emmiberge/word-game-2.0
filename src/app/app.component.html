@@ -1,8 +1,9 @@
-<div class ="gameContainer">
-  <div style="display: flex; margin-top: 5px; margin-bottom: 0px; ">
+<div class ="container">
+  <div class="inner-container">
     <h1>Word game</h1>
-    <button style="right: 37%; position: absolute; margin-top: 5px;" id="about-button"(click)="openDialog()">?</button>
-  </div>
+    <app-toolbar></app-toolbar>
+    
+  
   
 
   
@@ -26,5 +27,5 @@
   <button *ngIf="isGameFinished"  class="button-in-row" (click)="newGame()" mat-stroked-button>New Game</button>
   <app-finished-row [color]= 'exampleColor' [word_explanation] ='exampleWE'></app-finished-row>
 
-
+</div>
 </div>

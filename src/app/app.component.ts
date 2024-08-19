@@ -18,11 +18,12 @@ import {
 } from '@angular/material/dialog';
 import { AboutDialogComponent } from '../components/about-dialog/about-dialog.component';
 import { GameGenerator, WordCollection } from '../model/GameGenerator';
+import { ToolbarComponent } from "../components/toolbar/toolbar.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [MatButtonModule, RouterOutlet, GridComponent, MatIconModule, CommonModule, FinishedRowComponent],
+  imports: [MatButtonModule, RouterOutlet, GridComponent, MatIconModule, CommonModule, FinishedRowComponent, ToolbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
