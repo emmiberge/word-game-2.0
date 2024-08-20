@@ -1,7 +1,7 @@
 export enum Group{
     YELLOW,
-    PINK,
-    PURPLE,
+    GREEN,
+    ORANGE,
     BLUE,
     
 }
@@ -11,10 +11,10 @@ export enum Group{
 export class GroupClass{
     public static readonly groupColorMap : Map<Group, string> = 
     new Map([
-        [Group.YELLOW, "rgb(255, 248, 219)"],
-        [Group.PINK, "rgb(255, 199, 237)"],
-        [Group.PURPLE, "rgb(125, 138, 188)"],
-        [Group.BLUE, "rgb(48, 68, 99)"],
+        [Group.YELLOW, "rgb(250, 240, 215)"],
+        [Group.GREEN, "rgb(204, 238, 188)"],
+        [Group.ORANGE, "rgb(255, 217, 192)"],
+        [Group.BLUE, "rgb(140, 192, 222)"],
         
     ]);
 }

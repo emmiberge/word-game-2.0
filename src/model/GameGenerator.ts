@@ -21,10 +21,10 @@ const simpleExample : WordCollection[] = [
     group : Group.YELLOW},
     {words : ["Circle", "Square", "Rectangle", "Triangle"],
     connection : "Shapes",
-    group : Group.PURPLE},
+    group : Group.GREEN},
     {words : ["Fire", "Water", "Earth", "Wind"],
     connection : "Elements",
-    group : Group.PINK}
+    group : Group.ORANGE}
 ];
 
 const realisticExample : WordCollection[] = [
@@ -36,10 +36,10 @@ const realisticExample : WordCollection[] = [
     group : Group.YELLOW},
     {words : ["Cream", "Berg", "Skate", "Breaker"],
     connection: "Starts with Ice",
-    group : Group.PURPLE},
+    group : Group.GREEN},
     {words : ["Season", "Cycle", "Stage", "Age"],
     connection: "Periods of time",
-    group : Group.PINK}
+    group : Group.ORANGE}
 ]
 
 const realisticExample2 : WordCollection[] = [
@@ -48,10 +48,10 @@ const realisticExample2 : WordCollection[] = [
     group : Group.BLUE},
     {words : ["Cover", "Shelter", "Barrier", "Insurance"],
     connection: "Protection",
-    group : Group.PURPLE},
+    group : Group.GREEN},
     {words: ["Chest", "Safe", "Vault", "Locker"],
     connection: "For safekeeping",
-    group : Group.PINK},
+    group : Group.ORANGE},
     {words: ["Fly", "Fighter", "Truck", "Work"],
     connection: "Starts with fire",
     group : Group.YELLOW}
