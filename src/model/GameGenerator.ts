@@ -4,6 +4,7 @@ import { Tile } from "./Tile";
 
 export interface WordCollection{
     words : string[],
+    group : Group,
     connection : string
 }
 
@@ -12,35 +13,48 @@ export interface WordCollection{
 
 const simpleExample : WordCollection[] = [
     {words : ["Cat", "Dog", "Horse", "Hamster"],
-    connection : "Animals"},
+    connection : "Animals",
+    group : Group.BLUE
+    },
     {words : ["Cake", "Pudding", "Tiramisu", "Ice cream"],
-    connection : "Desserts"},
+    connection : "Desserts",
+    group : Group.YELLOW},
     {words : ["Circle", "Square", "Rectangle", "Triangle"],
-    connection : "Shapes"},
+    connection : "Shapes",
+    group : Group.PURPLE},
     {words : ["Fire", "Water", "Earth", "Wind"],
-    connection : "Elements"}
+    connection : "Elements",
+    group : Group.PINK}
 ];
 
 const realisticExample : WordCollection[] = [
     {words : ["Note", "Scale", "Chord", "Key"],
-    connection: "Related to music"},
+    connection: "Related to music",
+    group : Group.BLUE},
     {words: ["Polar", "Brown", "Black", "Panda"],
-    connection: "Types of bears"},
+    connection: "Types of bears",
+    group : Group.YELLOW},
     {words : ["Cream", "Berg", "Skate", "Breaker"],
-    connection: "Starts with Ice"},
+    connection: "Starts with Ice",
+    group : Group.PURPLE},
     {words : ["Season", "Cycle", "Stage", "Age"],
-    connection: "Periods of time"}
+    connection: "Periods of time",
+    group : Group.PINK}
 ]
 
 const realisticExample2 : WordCollection[] = [
     {words: ["Ash", "Walnut", "Maple", "Pine"],
-    connection: "Types of trees"},
+    connection: "Types of trees",
+    group : Group.BLUE},
     {words : ["Cover", "Shelter", "Barrier", "Insurance"],
-    connection: "Protection"},
+    connection: "Protection",
+    group : Group.PURPLE},
     {words: ["Chest", "Safe", "Vault", "Locker"],
-    connection: "For safekeeping"},
+    connection: "For safekeeping",
+    group : Group.PINK},
     {words: ["Fly", "Fighter", "Truck", "Work"],
-    connection: "Starts with fire"}
+    connection: "Starts with fire",
+    group : Group.YELLOW}
 ]
 
 /*
@@ -68,7 +82,8 @@ export class GameGenerator{
 
     public static getExampleWordCollection() : WordCollection{
         return {words : ["Nova", "Star", "Market", "Hero"],
-        connection : "Super ___"};
+        connection : "Super ___",
+        group : Group.BLUE};
     }
     
 
@@ -117,10 +132,11 @@ export class GameGenerator{
 
         // Convert
         const wordsArr : string[] = arr.map(t => t.getWord());
-        return {words: wordsArr, connection: arr[0].getConnection()}
+        return {words: wordsArr, connection: arr[0].getConnection(), group: arr[0].getGroup()}
 
 
     }
+
 
 
 

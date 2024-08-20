@@ -1,6 +1,6 @@
-<div *ngFor="let item of correctGuesses">
+<div *ngFor="let wc of correctGuesses">
     <div class="container">
-        <h3 class="title" style.background-color={{color}}> Explanation</h3>
-        <h5 class="words">BLUEBERRY, RASPBERRY, STRAWBERRY, BLACKBERRY</h5>
+        <h3 class="title" style.background-color={{groupColor(wc.group)}}> {{wc.connection}}</h3>
+        <h5 class="words">{{formatWCWords(wc.words)}}</h5>
     </div>
 </div>    

@@ -83,7 +83,7 @@ export class GridComponent{
     var unSelectedTiles : Tile[] = this.tilesNotGroupedYet.filter(t => !t.getIsSelected());
     this.tilesNotGroupedYet = [...unSelectedTiles];
 
-    this.sendCorrectGuess(this.gameGenerator.tilesToWordCollection(selectedTiles))
+    this.sendCorrectGuess(this.gameGenerator.tilesToWordCollection(selectedTiles));
   }
 
   sendCorrectGuess(selectedTiles : WordCollection){
@@ -253,15 +253,11 @@ export class GridComponent{
         return tile.getGroup() == selectedTiles[0].getGroup();
       })){
         console.log("All tiles in same group: ", selectedTiles[0].getGroup());
-        selectedTiles.map((t) => {
-          t.find();
-          this.setColorTile(t.getId(), GroupClass.groupColorMap.get(t.getGroup())!);
-        });
+        this.madeCorrectGuess();
         this.nSelected = 0;
         this.nFound+=4;
 
         this.sendGameEvent(GameEvent.PLAYER_CAN_NOT_MAKE_GUESS);
-        this.putFoundTilesFirst();
 
         // Check if won
         if(this.hasWon()){

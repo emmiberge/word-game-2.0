@@ -19,6 +19,7 @@ import {
 
 import { GameGenerator, WordCollection } from '../model/GameGenerator';
 import { ToolbarComponent } from "../components/toolbar/toolbar.component";
+import { Group } from '../model/Group';
 
 @Component({
   selector: 'app-root',
@@ -34,6 +35,7 @@ export class AppComponent {
   canSubmitGuess! : boolean;
   isGameFinished! : boolean;
   isAnyTileChosen! : boolean;
+  correctGuesses : WordCollection[] = [];
 
   exampleColor : string = "yellow";
   exampleWE : WordCollection = GameGenerator.getExampleWordCollection();
@@ -80,10 +82,10 @@ export class AppComponent {
     this.GridComponent.newGame();
   }
 
-  // Recieves a correct guess from grid component, forwards to finished row
-  /*forwardCorrectGuess(collection : WordCollection){
-    FinishedRowComponent.addCorrectGuess(collection);
-  }*/
+  
+  addCorrectGuess(collection : WordCollection){
+    this.correctGuesses.push(collection);
+  }
  
 
   receiveGameEvent(event : GameEvent){

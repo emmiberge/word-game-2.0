@@ -13,8 +13,8 @@
   <div class="inner-container">
     <p style="margin-bottom: 10px; margin-top: 18px;">Create groups of four!</p>
     <div style="display: flex; flex-direction: column; align-items: center;">
-      <app-finished-row style="width: 585px;" [color]= 'exampleColor' [word_collection] ='exampleWE'></app-finished-row>
-      <app-grid (taskNameEvent) = 'receiveGameEvent($event)' ></app-grid>
+      <app-finished-row [correctGuesses]="correctGuesses" style="width: 585px;"></app-finished-row>
+      <app-grid (taskNameEvent) = 'receiveGameEvent($event)' (correctGuess)='addCorrectGuess($event)' ></app-grid>
     </div>
     <div style="display: flex;">
       <p class="textAttempts">Attempts left:</p>
