@@ -80,6 +80,7 @@ export class AppComponent {
   newGame(){
     this.initGame();
     this.GridComponent.newGame();
+    this.correctGuesses = [];
   }
 
   
