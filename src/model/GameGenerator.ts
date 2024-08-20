@@ -57,12 +57,13 @@ const realisticExample2 : WordCollection[] = [
     group : Group.YELLOW}
 ]
 
+const data = [simpleExample, realisticExample, realisticExample2];
+
 /*
     A factory for generating words for a game
 */
 export class GameGenerator{
-    private groups = [Group.BLUE, Group.PURPLE, Group.PINK, Group.YELLOW];
-    private collection : WordCollection[] = realisticExample2;
+    private collection! : WordCollection[];
     private tiles! : Tile[];
     private amountOfTiles = 16;
 
@@ -70,6 +71,31 @@ export class GameGenerator{
     public GameGenerator(){
         this.initGame();
         //console.log("End of game generator constructor");
+    }
+
+    private initGame(){
+        this.initWordCollection();
+
+        // Create tiles with unique ids from our WordCollection 
+        var tmp : Tile[] = [];
+        var indexId = 0;
+
+        this.collection.forEach(collection => {
+            collection.words.forEach(word => {
+                const tile : Tile = new Tile(word.toUpperCase(), collection.connection, collection.group, indexId.toString());
+                tmp.push(tile);
+                indexId++;
+            });
+        });
+
+        // Shuffle tiles 
+        this.tiles = ShufflingService.shuffle(tmp);
+        console.log(this.tiles);
+    }
+
+    private initWordCollection(){
+        const index : number = Math.floor(Math.random() * data.length);
+        this.collection = data[index];
     }
 
     public getTiles(){
@@ -87,39 +113,11 @@ export class GameGenerator{
     }
     
 
-    // Change id????
-    private initGame(){
-        console.log("Called initGame model");
-        var tmp : Tile[] = [];
-        var groupIndex = 0;
-        var indexId = 0;
-        var indexArr : number[] = Array.from({length: this.amountOfTiles}, (_, i) => {
-            return i;
-          });
-
-        indexArr = ShufflingService.shuffle(indexArr);
-
-        console.log(this.collection);
-        console.log(indexArr);
-
-        this.collection.forEach(collection => {
-            collection.words.forEach(word => {
-                const tile : Tile = new Tile(word.toUpperCase(), collection.connection, this.groups[groupIndex], indexArr[indexId].toString());
-                tmp.push(tile);
-                indexId++;
-            });
-            groupIndex++;
-        });
-
-        // Should shuffle
-
-        
-        this.tiles = ShufflingService.shuffle(tmp);
-        console.log(this.tiles);
-    }
-
+   
+    
+    // Convert a list of tiles into a word collection
     public tilesToWordCollection(arr : Tile[]): WordCollection{
-        // Chek valid amount of tiles and that they are all in the same group
+        // Check that we have exactly four tiles and that they are all in the same group
         if(arr.length != 4){
             throw new RangeError("Wrong amount of tiles submitted");
         }
@@ -133,8 +131,6 @@ export class GameGenerator{
         // Convert
         const wordsArr : string[] = arr.map(t => t.getWord());
         return {words: wordsArr, connection: arr[0].getConnection(), group: arr[0].getGroup()}
-
-
     }
 
 
