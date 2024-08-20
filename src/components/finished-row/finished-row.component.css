@@ -1,15 +1,16 @@
 .container{
     width: inherit;
-    height: 87px;
+    height: 70px;
     background-color: whitesmoke;
+    margin-top: 8px;
 }
 
 .title{
     font-size:20px;
     text-align: center;
     height: 40%;
-    padding-top: 8px;
     text-transform: uppercase;
+    margin-top: 0;
 }
 
 .words{
