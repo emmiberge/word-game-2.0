@@ -6,6 +6,12 @@
     align-items: center;
 }
 
+.disclaimer{
+    margin-left: 18px;
+    padding-left: 2px;
+    background-color: burlywood;
+}
+
 h5{
     font-size: medium;
     margin: 0;
@@ -23,13 +29,13 @@ h5{
 
 .title{
     padding-top: 24px;
-    padding-bottom: 24px;
+    padding-bottom: 6px;
 }
 
 .attemptRow{
     display: flex;
     align-items: center; 
-    margin-top: 12px;
+    margin-top:8px;
     margin-bottom: 18px;
 }
 
