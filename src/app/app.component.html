@@ -16,7 +16,7 @@
       <app-finished-row [correctGuesses]="correctGuesses" style="width: 585px;"></app-finished-row>
       <app-grid (taskNameEvent) = 'receiveGameEvent($event)' (correctGuess)='addCorrectGuess($event)' ></app-grid>
     </div>
-    <div style="display: flex;">
+    <div class="attemptRow">
       <h5 class="textAttempts">Attempts left:</h5>
       <div class="dotContainer" >
         <span *ngFor="let n of numSequence(attemptsLeft)" class="dotAttempt"></span>

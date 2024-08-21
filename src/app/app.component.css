@@ -10,6 +10,7 @@ h5{
     font-size: medium;
     margin: 0;
     padding: 0;
+    font-weight: normal;
 }
 
 .inner-container{
@@ -17,6 +18,7 @@ h5{
     display: flex; 
     flex-direction: column;
     align-items: center;
+    margin-bottom: 12px;
 }
 
 .title{
@@ -24,6 +26,12 @@ h5{
     padding-bottom: 24px;
 }
 
+.attemptRow{
+    display: flex;
+    align-items: center; 
+    margin-top: 12px;
+    margin-bottom: 18px;
+}
 
 
 .dotAttempt{
@@ -32,7 +40,6 @@ h5{
     border-radius: 50%;
     background-color: rgb(18, 18, 18);
     display: inline-block;
-    margin-top: 18px;
     margin-left: 4px;
 }
 
