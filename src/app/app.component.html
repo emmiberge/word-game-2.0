@@ -11,13 +11,13 @@
   
   <app-toolbar style="width: 100%;"></app-toolbar>
   <div class="inner-container">
-    <p style="margin-bottom: 10px; margin-top: 18px;">Create groups of four!</p>
+    <h5 style="margin-bottom: 10px; margin-top: 18px;">Create groups of four!</h5>
     <div style="display: flex; flex-direction: column; align-items: center;">
       <app-finished-row [correctGuesses]="correctGuesses" style="width: 585px;"></app-finished-row>
       <app-grid (taskNameEvent) = 'receiveGameEvent($event)' (correctGuess)='addCorrectGuess($event)' ></app-grid>
     </div>
     <div style="display: flex;">
-      <p class="textAttempts">Attempts left:</p>
+      <h5 class="textAttempts">Attempts left:</h5>
       <div class="dotContainer" >
         <span *ngFor="let n of numSequence(attemptsLeft)" class="dotAttempt"></span>
       </div>
@@ -29,7 +29,7 @@
     </div>
   
   
-  <p>{{displayText}}</p>
+  <h5>{{displayText}}</h5>
 
   <button *ngIf="isGameFinished"  class="button-in-row" (click)="newGame()" mat-stroked-button>New Game</button>
   

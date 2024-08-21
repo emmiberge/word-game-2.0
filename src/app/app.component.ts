@@ -90,12 +90,12 @@ export class AppComponent {
   receiveGameEvent(event : GameEvent){
     switch(event){
       case GameEvent.PLAYER_WON:
-        this.displayText = "Congratulations, you won!";
+        this.displayText = "Congratulations, you won";
         this.canSubmitGuess = false;
         this.isGameFinished = true;
         return;
       case GameEvent.PLAYER_LOST:
-        this.displayText = "You lost :(";
+        this.displayText = "You lost";
         this.canSubmitGuess = false;
         this.isGameFinished = true;
         return;

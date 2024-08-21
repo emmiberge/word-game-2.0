@@ -6,6 +6,12 @@
     align-items: center;
 }
 
+h5{
+    font-size: medium;
+    margin: 0;
+    padding: 0;
+}
+
 .inner-container{
     width: 700px;
     display: flex; 
