@@ -1,25 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { TileComponent } from '../components/tile/tile.component';
 import { GridComponent } from '../components/grid/grid.component';
 import {MatButtonModule} from '@angular/material/button';
 import { GameEvent } from '../types/gameEvent';
 import {MatIconModule} from '@angular/material/icon';
 import { FinishedRowComponent } from '../components/finished-row/finished-row.component';
-import {
-  MatDialog,
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-  MatDialogTitle,
-  MatDialogContent,
-  MatDialogActions,
-  MatDialogClose,
-} from '@angular/material/dialog';
 
 import { GameGenerator, WordCollection } from '../model/GameGenerator';
 import { ToolbarComponent } from "../components/toolbar/toolbar.component";
-import { Group } from '../model/Group';
 
 @Component({
   selector: 'app-root',

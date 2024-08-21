@@ -1,12 +1,10 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { CommonModule } from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
 import { TileComponent } from '../tile/tile.component';
 import { Tile } from '../../model/Tile';
-import { Group, GroupClass } from '../../model/Group';
 import { GameGenerator, WordCollection } from '../../model/GameGenerator';
-import { tileState } from '../../types/tileState';
 import { GameEvent } from '../../types/gameEvent';
 import { ShufflingService } from '../../services/shuffling.service';
 
