@@ -34,12 +34,13 @@ export interface IAbout {
   templateUrl: './about-dialog.component.html',
   styleUrl: './about-dialog.component.css'
 })
+
+// Represents the popup window with instructions for the game
 export class AboutDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<AboutDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IAbout
   ) {
-    console.log("Data: " + data.text);
   }
 
   onNoClick(): void {

@@ -48,11 +48,6 @@ export class GridComponent{
     // Generate tiles
     this.gameGenerator = new GameGenerator();
     this.tilesNotGroupedYet = this.gameGenerator.getTiles();
-    console.log("Before foreach");
-    this.tilesNotGroupedYet.forEach((tile) => {
-      console.log(tile.getId());
-      console.log(tile.getWord());
-    })
     this.sendGameEvent(GameEvent.PLAYER_CAN_NOT_MAKE_GUESS);
 
     // Set colors of tiles
@@ -140,13 +135,7 @@ export class GridComponent{
  
   // Called when tile is chosen
   trySelect(id: string){
-    console.log("Called trySelect");
     var t : Tile = this.tilesNotGroupedYet.filter(t => t.getId() === id)[0];
-
-    console.log("id:" + t.getId());
-    console.log("Can be selected:" + t.getCanBeSelected());
-    console.log("nSelected:" + this.nSelected);
-
 
     // Select
     if(t.getCanBeSelected() && this.nSelected < 4){
@@ -165,9 +154,7 @@ export class GridComponent{
 
 
   private selectTile(t : Tile){
-    console.log("Select succeeded");
       this.nSelected++;
-      console.log("nSelected:" + this.nSelected);
       t.select();
       this.setColorTile(t.getId(), this.selectedColor);
       this.sendGameEvent(GameEvent.AT_LEAST_ONE_TILE_CHOSEN);
@@ -178,11 +165,9 @@ export class GridComponent{
   }
 
   private unselectTile(t : Tile){
-    console.log("Unselected tile with id ", t.getId());
       t.deselect();
       this.nSelected--;
       this.setColorTile(t.getId(), this.unSelectedColor);
-      console.log("nSelected:" + this.nSelected);
 
       if(this.nSelected < 4){
         this.sendGameEvent(GameEvent.PLAYER_CAN_NOT_MAKE_GUESS);
@@ -238,13 +223,6 @@ export class GridComponent{
   submitTiles(){
     if(this.nSelected == 4 && this.nOfAttemptsLeft > 0){
       var selectedTiles : Tile[] = this.tilesNotGroupedYet.filter(t => t.getIsSelected());
-      
-      console.log("Tiles selected:");
-      selectedTiles.forEach(tile => {
-        console.log(tile.getId());
-      });
-
-
       this.sendGameEvent(GameEvent.NO_TILES_CHOSEN);
 
 
@@ -252,7 +230,6 @@ export class GridComponent{
       if(selectedTiles.every(tile => {
         return tile.getGroup() == selectedTiles[0].getGroup();
       })){
-        console.log("All tiles in same group: ", selectedTiles[0].getGroup());
         this.madeCorrectGuess();
         this.nSelected = 0;
         this.nFound+=4;
@@ -267,7 +244,6 @@ export class GridComponent{
 
       // Incorrect guess
       else{
-        console.log("Not all tiles in same group");
         this.unSelectAllTiles();
 
         this.nOfAttemptsLeft--;
@@ -287,16 +263,5 @@ export class GridComponent{
     }
   }
 
-  /*trySelect(t : Tile) : boolean{
-    if(this.nSelected < 4){
-      this.nSelected++;
-      console.log("Selected");
-      console.log("Number of selected: " + this.nSelected);
-      return true;
-    }
 
-    return false;
-
-    
-  }*/
 }

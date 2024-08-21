@@ -1,5 +1,7 @@
 import { Group } from "./Group";
 
+
+// Represents a tile in the games grid
 export class Tile {
     private word: string;
     private connection: string;
@@ -46,20 +48,19 @@ export class Tile {
     }
 
     public getIsFound(){
-        //console.log("Called getIsFound");
         return this.isFound;
     }
 
+    // Call to select this tile
     public select(){
-        //console.log("Should select tile with id " + this.id);
         if(this.canBeSelected){
-            console.log("Selected tile with id " + this.id);
             this.isSelected = true;
             this.canBeSelected = false;
         }
         
     }
 
+    // Call to unselect this tile
     public deselect(){
         if(this.isSelected){
             this.isSelected = false;
@@ -68,6 +69,7 @@ export class Tile {
         
     }
 
+    // Call when a tile is not to be selected ever again during this game
     public find(){
         this.lock();
         this.isSelected = false;
@@ -75,7 +77,7 @@ export class Tile {
     }
 
 
-    // Prevent tile from being picked again
+    // Prevent this tile from being picked again (temporarily)
     public lock(){
         this.canBeSelected = false;
     }

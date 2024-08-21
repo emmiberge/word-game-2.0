@@ -17,11 +17,9 @@ export class ToolbarComponent {
 
   openDialog(){
     const dialogRef = this.dialog.open(AboutDialogComponent, {
-      data : {text: "22222"}
+
     })
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+    
   }
 }

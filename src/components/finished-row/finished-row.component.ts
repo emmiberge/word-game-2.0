@@ -10,6 +10,8 @@ import { Group, GroupClass } from '../../model/Group';
   templateUrl: './finished-row.component.html',
   styleUrl: './finished-row.component.css'
 })
+
+// Displays the words of a group after player makes a correct guess
 export class FinishedRowComponent {
 
   @Input() correctGuesses : WordCollection[] = [];
@@ -18,14 +20,10 @@ export class FinishedRowComponent {
   constructor(){
     
   }
- 
-
- 
-
 
   groupColor = (group : Group) => GroupClass.groupColorMap.get(group)!;
 
-  // ["BLUEBERRY", "RASPBERRY", "STRAWBERRY", "BLACKBERRY"]
+  // ["BLUEBERRY", "RASPBERRY", "STRAWBERRY", "BLACKBERRY"] =>
   // BLUEBERRY, RASPBERRY, STRAWBERRY, BLACKBERRY
   formatWCWords(words : string[]) : string{
     const copy = [...words];

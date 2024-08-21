@@ -70,7 +70,6 @@ export class GameGenerator{
 
     public GameGenerator(){
         this.initGame();
-        //console.log("End of game generator constructor");
     }
 
     private initGame(){
@@ -88,9 +87,8 @@ export class GameGenerator{
             });
         });
 
-        // Shuffle tiles 
+        // Shuffle tiles
         this.tiles = ShufflingService.shuffle(tmp);
-        console.log(this.tiles);
     }
 
     private initWordCollection(){
@@ -99,7 +97,6 @@ export class GameGenerator{
     }
 
     public getTiles(){
-        console.log("Called get tiles");
         if(this.tiles == null){
             this.initGame();
         }

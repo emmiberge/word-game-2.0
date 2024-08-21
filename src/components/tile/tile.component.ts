@@ -7,6 +7,9 @@ import { tileState } from '../../types/tileState';
 import { GroupClass } from '../../model/Group';
 import { Observable } from 'rxjs';
 
+
+
+// A tile displayed in the grid of words
 @Component({
   selector: 'app-tile',
   standalone: true,
@@ -26,7 +29,6 @@ export class TileComponent implements OnInit{
 
   trySelect() {
     this.taskSelect.emit(this.id);
-    //this.word = "hello";
   }
 
   ngOnInit(){
@@ -37,12 +39,3 @@ export class TileComponent implements OnInit{
 }
 
 
-/*import { from } from  'rxjs';
-const vowels$ = from(['a', 'e', 'i', 'o', 'u']);
-
-vowels$.subscribe({  
-  next: x => console.log('The next vowel is: ', x),  
-  error: err => console.error('An error occurred', err),  
-  complete: () => console.log('There are no more vowels.')  
-});
-*/

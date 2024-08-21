@@ -58,7 +58,6 @@ export class AppComponent {
 
   submitChoice(){
     this.GridComponent.submitTiles();
-    console.log(this.isGameFinished);
   }
 
   shuffleTiles(){
@@ -66,7 +65,6 @@ export class AppComponent {
   }
 
   deselectAllTiles(){
-    console.log("Clicked delsect all tiles");
     this.GridComponent.unSelectAllTiles();
   }
 
@@ -112,11 +110,9 @@ export class AppComponent {
         return;
       case GameEvent.AT_LEAST_ONE_TILE_CHOSEN:
         this.isAnyTileChosen = true;
-        console.log("At least one tile chosen");
         return;
       case GameEvent.NO_TILES_CHOSEN:
         this.isAnyTileChosen = false;
-        console.log("No tiles chosen");
         return;
     }
   }

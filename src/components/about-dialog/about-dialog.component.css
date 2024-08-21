@@ -2,7 +2,7 @@ h2{
     font-family: Arial, sans-serif;
 }
 
-p{
+p, li{
     color: black;
 }
 
@@ -11,6 +11,3 @@ h4{
     font-weight: 500;
 }
 
-li{
-    color: black;
-}
