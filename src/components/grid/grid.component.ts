@@ -26,13 +26,14 @@ export class GridComponent{
   nOftotalTiles : number = 16;
   nSelected! : number;
   nFound! : number;
-  nOfAttemptsLeft! : number;
+  mistakesMade! : number;
+  maxAttempts : number = 4;
   allTilesFound! : boolean;
   gameGenerator! : GameGenerator;
   
+  
 
   @Output() taskNameEvent = new EventEmitter<GameEvent>();
-  @Output() correctGuess = new EventEmitter<WordCollection>();
 
   constructor(){
     this.initGame();
@@ -41,7 +42,7 @@ export class GridComponent{
   initGame(){
     this.nSelected = 0;
     this.nFound = 0;
-    this.nOfAttemptsLeft = 4;
+    this.mistakesMade = 0;
     this.allTilesFound = false;
 
     // Generate tiles
@@ -63,18 +64,6 @@ export class GridComponent{
   sendGameEvent(event : GameEvent){
     this.taskNameEvent.emit(event);
   }
-
-  
-
-
-  private madeCorrectGuess(){
-    this.putFoundTilesFirst();
-  }
-
-  sendCorrectGuess(selectedTiles : WordCollection){
-    this.correctGuess.emit(selectedTiles);
-  }
-
  
 
   // Not good, should set id regardless of index
@@ -217,7 +206,7 @@ export class GridComponent{
 
   // Called when player makes guess
   submitTiles(){
-    if(this.nSelected == 4 && this.nOfAttemptsLeft > 0){
+    if(this.nSelected == 4 && this.mistakesMade < this.maxAttempts){
       var selectedTiles : Tile[] = this.tilesNotGroupedYet.filter(t => t.getIsSelected());
       this.sendGameEvent(GameEvent.NO_TILES_CHOSEN);
 
@@ -247,11 +236,11 @@ export class GridComponent{
       else{
         this.unSelectAllTiles();
 
-        this.nOfAttemptsLeft--;
+        this.mistakesMade++;
         this.sendGameEvent(GameEvent.WRONG_ATTEMPT);
         
         // Check if lost
-        if(this.nOfAttemptsLeft == 0){
+        if(this.mistakesMade == this.maxAttempts){
           this.sendGameEvent(GameEvent.PLAYER_LOST);
           this.lockAllTiles();
         }

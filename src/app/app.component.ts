@@ -5,7 +5,6 @@ import { GridComponent } from '../components/grid/grid.component';
 import {MatButtonModule} from '@angular/material/button';
 import { GameEvent } from '../types/gameEvent';
 import {MatIconModule} from '@angular/material/icon';
-import { FinishedRowComponent } from '../components/finished-row/finished-row.component';
 
 import { GameGenerator, WordCollection } from '../model/GameGenerator';
 import { ToolbarComponent } from "../components/toolbar/toolbar.component";
@@ -15,24 +14,23 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [MatButtonModule, RouterOutlet, GridComponent, MatIconModule, CommonModule, FinishedRowComponent, ToolbarComponent],
+  imports: [MatButtonModule, RouterOutlet, GridComponent, MatIconModule, CommonModule, ToolbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'word-game';
   displayText! : string;
-  attemptsLeft! : number;
+  mistakesMade! : number;
+  maxAttempts : number = 4;
   canSubmitGuess! : boolean;
   isGameFinished! : boolean;
   isAnyTileChosen! : boolean;
-  correctGuesses : WordCollection[] = [];
 
   exampleColor : string = "yellow";
   exampleWE : WordCollection = GameGenerator.getExampleWordCollection();
 
   @ViewChild(GridComponent) GridComponent: any;
-  @ViewChild(FinishedRowComponent) FinishedRowComponent : any;
 
   constructor(public dialog: MatDialog) {
     this.initGame();
@@ -42,7 +40,7 @@ export class AppComponent {
     this.canSubmitGuess = false;
     this.isGameFinished = false;
     this.isAnyTileChosen = false;
-    this.attemptsLeft = 4;
+    this.mistakesMade = 0;
     this.displayText = " ";
   }
 
@@ -77,13 +75,8 @@ export class AppComponent {
   newGame(){
     this.initGame();
     this.GridComponent.newGame();
-    this.correctGuesses = [];
   }
 
-  
-  addCorrectGuess(collection : WordCollection){
-    this.correctGuesses.push(collection);
-  }
  
 
   receiveGameEvent(event : GameEvent){
@@ -94,12 +87,12 @@ export class AppComponent {
         this.isGameFinished = true;
         return;
       case GameEvent.PLAYER_LOST:
-        this.displayText = "You lost";
+        this.displayText = "Game over";
         this.canSubmitGuess = false;
         this.isGameFinished = true;
         return;
       case GameEvent.WRONG_ATTEMPT:
-        this.attemptsLeft--;
+        this.mistakesMade++;
         return;
       case GameEvent.PLAYER_CAN_MAKE_GUESS:
         this.canSubmitGuess = true;

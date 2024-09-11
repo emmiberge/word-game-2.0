@@ -14,13 +14,11 @@
   <div class="inner-container">
     <h5 style="margin-bottom: 10px; margin-top: 18px;">Create groups of four!</h5>
     <div style="display: flex; flex-direction: column; align-items: center;">
-      <app-grid (taskNameEvent) = 'receiveGameEvent($event)' (correctGuess)='addCorrectGuess($event)' ></app-grid>
+      <app-grid (taskNameEvent) = 'receiveGameEvent($event)'></app-grid>
     </div>
     <div class="attemptRow">
-      <h5 class="textAttempts">Attempts left:</h5>
-      <div class="dotContainer" >
-        <span *ngFor="let n of numSequence(attemptsLeft)" class="dotAttempt"></span>
-      </div>
+      <h5 class="textAttempts">Mistakes made: {{mistakesMade}} / {{maxAttempts}}</h5>
+      
     </div>
     <div class="button-row">
       <button disabled={{isGameFinished}} class="button-in-row" (click)="shuffleTiles()" mat-stroked-button>Shuffle</button>
@@ -29,7 +27,7 @@
     </div>
   
   
-  <div style="height: 30px;">{{displayText}}</div>
+  <div style="height: 30px; margin-top: 10px;">{{displayText}}</div>
 
   <button *ngIf="isGameFinished"  class="button-in-row" (click)="newGame()" mat-stroked-button>New Game</button>
   
