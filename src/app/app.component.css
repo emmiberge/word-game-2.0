@@ -12,6 +12,8 @@
     background-color: burlywood;
 }
 
+
+
 h5{
     font-size: medium;
     margin: 0;
@@ -30,6 +32,8 @@ h5{
 .title{
     padding-top: 24px;
     padding-bottom: 6px;
+    display: flex;
+    align-items: center;
 }
 
 .attemptRow{
@@ -105,5 +109,22 @@ h5{
     background-color: antiquewhite;
 }
 
+
+.dialog-button{
+    background-color: inherit;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: black;
+    border: 1px solid black;
+    border-radius: 50%;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+
+}
 
 

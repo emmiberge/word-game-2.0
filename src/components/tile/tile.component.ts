@@ -1,11 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatCardModule} from '@angular/material/card';
-import { Tile } from '../../model/Tile';
-import { GridComponent } from '../grid/grid.component';
-import { tileState } from '../../types/tileState';
-import { GroupClass } from '../../model/Group';
-import { Observable } from 'rxjs';
 
 
 

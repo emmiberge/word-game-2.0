@@ -9,6 +9,8 @@ import { FinishedRowComponent } from '../components/finished-row/finished-row.co
 
 import { GameGenerator, WordCollection } from '../model/GameGenerator';
 import { ToolbarComponent } from "../components/toolbar/toolbar.component";
+import { AboutDialogComponent } from '../components/about-dialog/about-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -32,7 +34,7 @@ export class AppComponent {
   @ViewChild(GridComponent) GridComponent: any;
   @ViewChild(FinishedRowComponent) FinishedRowComponent : any;
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
     this.initGame();
   }
 
@@ -42,6 +44,14 @@ export class AppComponent {
     this.isAnyTileChosen = false;
     this.attemptsLeft = 4;
     this.displayText = " ";
+  }
+
+  openDialog(){
+    const dialogRef = this.dialog.open(AboutDialogComponent, {
+
+    })
+
+    
   }
 
 
