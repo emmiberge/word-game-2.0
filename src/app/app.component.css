@@ -12,7 +12,10 @@
     background-color: burlywood;
 }
 
-
+h1{
+    margin-bottom: 0;
+    margin-top: 0;
+}
 
 h5{
     font-size: medium;
@@ -30,7 +33,6 @@ h5{
 }
 
 .title{
-    padding-top: 24px;
     padding-bottom: 6px;
     display: flex;
     align-items: center;
