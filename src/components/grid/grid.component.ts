@@ -7,6 +7,7 @@ import { Tile } from '../../model/Tile';
 import { GameGenerator, WordCollection } from '../../model/GameGenerator';
 import { GameEvent } from '../../types/gameEvent';
 import { ShufflingService } from '../../services/shuffling.service';
+import { GroupClass } from '../../model/Group';
 
 
 @Component({
@@ -65,18 +66,9 @@ export class GridComponent{
 
   
 
-  // Send to parent to create a new finished row
-  // Removes the correctly guessed tiles from this component
+
   private madeCorrectGuess(){
-    var selectedTiles : Tile[] = this.tilesNotGroupedYet.filter(t => t.getIsSelected());
-
-
-
-    // Remove grouped tiles
-    var unSelectedTiles : Tile[] = this.tilesNotGroupedYet.filter(t => !t.getIsSelected());
-    this.tilesNotGroupedYet = [...unSelectedTiles];
-
-    this.sendCorrectGuess(this.gameGenerator.tilesToWordCollection(selectedTiles));
+    this.putFoundTilesFirst();
   }
 
   sendCorrectGuess(selectedTiles : WordCollection){
@@ -176,6 +168,12 @@ export class GridComponent{
       }
   }
 
+  private setFinishedColorOnTile(t : Tile){
+    this.setColorTile(t.getId(), GroupClass.groupColorMap.get(t.getGroup())!);
+  }
+
+
+
 
   unSelectAllTiles(){
     this.tilesNotGroupedYet.forEach(t => {
@@ -228,7 +226,12 @@ export class GridComponent{
       if(selectedTiles.every(tile => {
         return tile.getGroup() == selectedTiles[0].getGroup();
       })){
-        this.madeCorrectGuess();
+        selectedTiles.forEach(t => {
+          t.find();
+          this.setFinishedColorOnTile(t);
+        });
+        
+        this.putFoundTilesFirst();
         this.nSelected = 0;
         this.nFound+=4;
 
